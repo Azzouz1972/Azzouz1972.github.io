@@ -1,0 +1,23 @@
+---
+title: "Teaching & Course Notes"
+---
+
+This section provides course notes, problem sheets, and other teaching resources.
+
+## Course notes
+
+### Measure and Integration
+
+Course notes and exercise sheets will be made available here.
+
+### Differential Calculus
+
+Resources on differential calculus, multivariable integration, differential forms, Green–Stokes formulas, and submanifolds.
+
+### Descriptive Statistics
+
+Teaching materials and exercises for descriptive statistics.
+
+::: {.callout-tip}
+PDF files can be placed in the `files/` directory and linked directly from this page. Large or archival documents can instead point to the university repository or Zenodo.
+:::

@@ -1,0 +1,21 @@
+---
+title: "Research"
+---
+
+My work spans theoretical and applied mathematics, with particular interest in problems where functional analysis, partial differential equations, stochastic methods, and computational approaches interact.
+
+## Functional analysis and operator theory
+
+Research on spectral and pseudospectral properties of operators and block operator matrices, semi-Fredholm theory, stability questions, and related perturbation problems.
+
+## Partial differential equations
+
+Work on local, fractional, and nonlocal PDEs, including Hardy-type inequalities, Kirchhoff-type problems, Pohozaev identities, and qualitative properties of solutions.
+
+## Stochastic analysis
+
+Research involving martingales, representation properties, stochastic equations, and related analytical structures.
+
+## Scientific machine learning
+
+Development and analysis of physics-informed neural networks (PINNs) and related methods for forward and inverse PDE problems, with emphasis on mathematical identifiability, model discrepancy, calibration, and comparison with classical numerical or statistical methods.

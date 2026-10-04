@@ -1,0 +1,34 @@
+---
+title: "Abdelhalim Azzouz"
+subtitle: "Professor of Mathematics"
+page-layout: full
+---
+
+::: {.hero}
+## Abdelhalim Azzouz
+
+**Professor of Mathematics**  
+Department of Mathematics  
+University Salhi Ahmed, Naama, Algeria
+
+[Email](mailto:azzouz.abdelhalim@cuniv-naama.dz){.btn .btn-primary} [ORCID](https://orcid.org/0000-0003-0960-7768){.btn .btn-outline-primary} [Google Scholar](https://scholar.google.com/scholar?q=%22Abdelhalim+Azzouz%22){.btn .btn-outline-primary} [GitHub](https://github.com/Azzouz1972){.btn .btn-outline-secondary}
+:::
+
+## About
+
+I am a professor of mathematics at University Salhi Ahmed, Naama. My research interests include applied and functional analysis, operator theory, stochastic analysis, partial differential equations, and scientific machine learning, including physics-informed neural networks.
+
+This website collects my **publications**, **preprints**, **teaching materials**, and academic resources. It is intended to provide a stable point of access to my research and teaching activities.
+
+## Research areas
+
+- Functional analysis and operator theory
+- Pseudospectra and operator matrices
+- Stochastic analysis and martingales
+- Partial differential equations
+- Fractional and nonlocal problems
+- Scientific machine learning and physics-informed neural networks
+
+## Selected resources
+
+Use the navigation bar to browse my [publications](publications.qmd), current [preprints](preprints.qmd), and [teaching materials](teaching.qmd).

@@ -1,0 +1,83 @@
+---
+title: "Publications"
+---
+
+A curated publication list cross-checked against public scholarly records. ORCID is used as the identity anchor; DOI links are included only when verified.
+
+[ORCID](https://orcid.org/0000-0003-0960-7768){.btn .btn-primary} [Google Scholar search](https://scholar.google.com/scholar?q=%22Abdelhalim+Azzouz%22){.btn .btn-outline-primary} [ResearchGate](https://www.researchgate.net/profile/Abdelhalim-Azzouz){.btn .btn-outline-secondary}
+
+## 2026
+
+**Abdelhalim Azzouz, Mahamed Beghdadi, Bilel Krichen.**  
+“On tauberian and co-tauberian spectra involving measures of weak noncompactness.” *Filomat* (2026).
+
+**Boumediene Abdellaoui, Abdelhalim Azzouz, Ahmed Bensedik, Rachid Bentifour.**  
+“Fractional Kirchhoff-Hardy Problem: Breaking of Resonance and General Existence Results.” *Axioms* **15** (2026), 199.  
+[DOI](https://doi.org/10.3390/axioms15030199)
+
+## 2025
+
+**Abdelhalim Azzouz, Mahamed Beghdadi, Bilel Krichen.**  
+“On Left-Right Generalized Fredholm Spectra and Some Perturbations Results.” *Bulletin of the Korean Mathematical Society* **62**(6) (2025), 1767–1785.  
+[DOI](https://doi.org/10.4134/BKMS.b240553)
+
+**Abdelhalim Azzouz, Mahamed Beghdadi, Bilel Krichen.**  
+“Some Spectral Properties of Left and Right Generalized Fredholm Operators.” *Georgian Mathematical Journal* **32**(5) (2025), 767–.  
+[DOI](https://doi.org/10.1515/gmj-2025-2004)
+
+## 2024
+
+**Abdelhalim Azzouz, Mahamed Beghdadi, Bilel Krichen.**  
+“Correction to: g-Riesz Operators and Their Spectral Properties.” *Advances in Operator Theory* **9** (2024), Article 88.  
+[DOI](https://doi.org/10.1007/s43036-024-00385-y)
+
+## 2023
+
+**Hafida Abbas, Abdelhalim Azzouz, Mohammed Brahim Zahaf, Mohammed Belmekki.**  
+“Generalized Extended Riemann-Liouville Type Fractional Derivative Operator.” *Kragujevac Journal of Mathematics* **47**(1) (2023), 57–80.  
+[DOI](https://doi.org/10.46793/KgJMat2301.057A)
+
+## 2022
+
+**Abdelhalim Azzouz, Mahamed Beghdadi, Bilel Krichen.**  
+“Generalized Relative Essential Spectra.” *Filomat* **36**(8) (2022), 2657–2673.  
+[DOI](https://doi.org/10.2298/FIL2208657A)
+
+**Abdelhalim Azzouz, Mahamed Beghdadi, Bilel Krichen.**  
+“g-Riesz Operators and Their Spectral Properties.” *Advances in Operator Theory* **7** (2022), Article 18.  
+[DOI](https://doi.org/10.1007/s43036-021-00179-6)
+
+## 2019
+
+**Hamou Mohammed Dida, Fouzi Hathout, Abdelhalim Azzouz.**  
+“On the Geometry of the Tangent Bundle With Vertical Rescaled Metric.” *Communications Faculty of Sciences University of Ankara Series A1 Mathematics and Statistics* **68**(1) (2019), 222–235.  
+[DOI](https://doi.org/10.31801/cfsuasmas.443735)
+
+## 2018
+
+**Ghouti Djellouli, Abdelhalim Azzouz, Bekkai Messirdi.**  
+“Essential Spectra and Drazin Invertibility of Quasisimilar Closed Operators.” *Analele Ştiinţifice ale Universităţii Al. I. Cuza din Iaşi. Matematică* **64**(2) (2018), 221–231.
+
+## 2016
+
+**Abdelhalim Azzouz, Ghouti Djellouli, Bekkai Messirdi.**  
+“A Review on Weak Similarities Relations of Bounded Operators.” *Advanced Studies in Contemporary Mathematics* **26**(4) (2016), 607–625.
+
+## 2011
+
+**Abdelhalim Azzouz, Bekkai Messirdi, Ghouti Djellouli.**  
+“New Results on the Closedness of the Product and Sum of Closed Linear Operators.” *Bulletin of Mathematical Analysis and Applications* **3**(2) (2011), 151–. 
+
+## 2008
+
+**Bekkai Messirdi, Mohammed Hichem Mortad, Abdelhalim Azzouz, Ghouti Djellouli.**  
+“A Topological Characterization of the Product of Two Closed Operators.” *Colloquium Mathematicum* **112**(2) (2008), 269–278.
+
+## Doctoral thesis
+
+**Abdelhalim Azzouz.** *Sur la Somme, le Produit et Passage à l’adjoint dans la Classe des Opérateurs Fermés sur un Espace de Hilbert.* PhD thesis in Mathematics (Functional Analysis), University of Oran, defended 27 September 2011.  
+[DOI record](https://doi.org/10.13140/RG.2.2.18251.00801)
+
+::: {.callout-note}
+This page is intentionally conservative: records with uncertain bibliographic details are not assigned an unverified DOI. Additional publications will be added after metadata verification.
+:::

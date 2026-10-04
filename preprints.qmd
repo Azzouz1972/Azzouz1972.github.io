@@ -1,0 +1,11 @@
+---
+title: "Preprints"
+---
+
+This page contains manuscripts and research work available prior to, or alongside, formal publication.
+
+For long-term scholarly preservation, preprints may also be deposited in an institutional repository or a research repository such as Zenodo, with this page serving as the central index.
+
+## Current preprints
+
+Preprints will be added here with title, co-authors, abstract or short description, date/version, and links to PDF and repository records.

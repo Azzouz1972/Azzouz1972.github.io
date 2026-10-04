@@ -1,0 +1,9 @@
+.hero {
+  padding: 3rem 2rem;
+  margin: 1rem 0 2.5rem 0;
+  border-radius: 0.8rem;
+  background: linear-gradient(135deg, rgba(20,75,120,.10), rgba(20,75,120,.02));
+}
+.hero h2 { font-size: 2.7rem; margin-bottom: .4rem; }
+.navbar-brand { font-weight: 700; }
+h2 { margin-top: 2rem; }
