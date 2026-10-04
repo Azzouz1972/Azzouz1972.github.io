@@ -8,4 +8,17 @@ For long-term scholarly preservation, preprints may also be deposited in an inst
 
 ## Current preprints
 
-Preprints will be added here with title, co-authors, abstract or short description, date/version, and links to PDF and repository records.
+**Hafida Abbas, Abdelhalim Azzouz.**  
+“A nonlocal transmission problem on a hybrid continuous-discrete domain.” arXiv:2603.14178 (March 2026).  
+A quadratic nonlocal variational problem on a domain made of a compact interval and finitely many discrete points: existence and uniqueness of a minimizer, and its characterization as the weak solution of a hybrid Euler–Lagrange system.  
+[arXiv](https://arxiv.org/abs/2603.14178){.btn .btn-outline-primary .btn-sm} [PDF](https://arxiv.org/pdf/2603.14178){.btn .btn-outline-secondary .btn-sm}
+
+**Abdelhalim Azzouz, Praveen Agarwal, Delfim F. M. Torres, Hafida Abbas.**  
+“Towards a Gagliardo-Type Theory of Fractional Sobolev Spaces on Arbitrary Time Scales.” arXiv:2603.14715 (March 2026).  
+A Gagliardo-type construction of fractional Sobolev spaces on arbitrary time scales, with completeness, reflexivity and Hilbert structure, a comparison with derivative-based definitions, and Poincaré-type inequalities and embeddings on bounded hybrid time scales.  
+[arXiv](https://arxiv.org/abs/2603.14715){.btn .btn-outline-primary .btn-sm} [PDF](https://arxiv.org/pdf/2603.14715){.btn .btn-outline-secondary .btn-sm}
+
+**Hafida Abbas, Abdelhalim Azzouz, Mohammed Brahim Zahaf, Mohamed Belmekki.**  
+“Generalized Extended Riemann-Liouville type fractional derivative operator.” arXiv:1912.03464 (December 2019).  
+Extensions of the incomplete gamma, beta and hypergeometric functions through the extended Bessel function, with recurrence relations, transformation formulas, Mellin transforms, and an extension of the Riemann–Liouville fractional derivative.  
+[arXiv](https://arxiv.org/abs/1912.03464){.btn .btn-outline-primary .btn-sm} [PDF](https://arxiv.org/pdf/1912.03464){.btn .btn-outline-secondary .btn-sm}
