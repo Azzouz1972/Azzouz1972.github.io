@@ -5,6 +5,8 @@ page-layout: full
 ---
 
 ::: {.hero}
+:::: {.columns}
+::: {.column width="68%"}
 ## Abdelhalim Azzouz
 
 **Professor of Mathematics**  
@@ -12,6 +14,11 @@ Department of Mathematics
 University Salhi Ahmed, Naama, Algeria
 
 [Email](mailto:azzouz.abdelhalim@cuniv-naama.dz){.btn .btn-primary} [ORCID](https://orcid.org/0000-0003-0960-7768){.btn .btn-outline-primary} [Google Scholar](https://scholar.google.com/scholar?q=%22Abdelhalim+Azzouz%22){.btn .btn-outline-primary}
+:::
+::: {.column width="32%"}
+![](images/azzouz-rome.webp){.hero-photo fig-alt="Abdelhalim Azzouz standing in front of the Fountain of the Triton, Rome"}
+:::
+::::
 :::
 
 ## About

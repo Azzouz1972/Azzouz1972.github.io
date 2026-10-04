@@ -7,3 +7,12 @@
 .hero h2 { font-size: 2.7rem; margin-bottom: .4rem; }
 .navbar-brand { font-weight: 700; }
 h2 { margin-top: 2rem; }
+.hero-photo {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  margin: 0 auto;
+  border-radius: 0.6rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+.hero .columns { align-items: center; }
