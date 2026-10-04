@@ -17,4 +17,6 @@ Functional analysis; operator theory; partial differential equations; stochastic
 
 ## Full CV
 
-A downloadable PDF curriculum vitae can be added here as `files/cv-abdelhalim-azzouz.pdf`.
+[Download the full CV (PDF)](files/cv-abdelhalim-azzouz.pdf){.btn .btn-primary}
+
+Last update: 4 October 2026.

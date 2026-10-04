@@ -16,3 +16,5 @@ h2 { margin-top: 2rem; }
   box-shadow: 0 4px 14px rgba(0,0,0,.18);
 }
 .hero .columns { align-items: center; }
+.navbar-brand { font-size: 1.05rem; }
+.navbar-nav .nav-link { font-size: 0.92rem; padding-left: 0.55rem; padding-right: 0.55rem; }

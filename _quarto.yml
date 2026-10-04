@@ -5,6 +5,7 @@ website:
   title: "Abdelhalim Azzouz"
   site-url: "https://azzouz1972.github.io"
   navbar:
+    collapse-below: xl
     left:
       - href: index.qmd
         text: Home
