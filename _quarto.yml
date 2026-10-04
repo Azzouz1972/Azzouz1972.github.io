@@ -22,7 +22,7 @@ website:
         href: https://www.researchgate.net/profile/Abdelhalim-Azzouz
   page-footer:
     left: "© Abdelhalim Azzouz"
-    center: '<span id="gc-wrap" style="display:none">Visitors: <span id="gc-total"></span></span>'
+    center: '<span id="gc-wrap">Visitors: <span id="gc-total">&ndash;</span></span>'
     right: "Built with Quarto"
 
 format:
