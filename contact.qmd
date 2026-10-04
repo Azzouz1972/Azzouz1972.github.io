@@ -19,3 +19,9 @@ University Salhi Ahmed, Naama, Algeria
 
 **ResearchGate:**  
 [Abdelhalim Azzouz](https://www.researchgate.net/profile/Abdelhalim-Azzouz)
+
+## Save my contact
+
+![](images/qr-contact.png){fig-alt="QR code containing my professional contact card" width=220}
+
+Scan the code to add my professional contact (name, institution, institutional email, ORCID) to your phone.
