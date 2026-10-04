@@ -1,0 +1,15 @@
+<script data-goatcounter="https://azzouz.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function () {
+  var wrap = document.getElementById('gc-wrap');
+  var el = document.getElementById('gc-total');
+  if (!wrap || !el) return;
+  fetch('https://azzouz.goatcounter.com/counter/TOTAL.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      var n = d && (d.count_unique || d.count);
+      if (n) { el.textContent = n; wrap.style.display = ''; }
+    })
+    .catch(function () {});
+})();
+</script>
