@@ -11,7 +11,7 @@ page-layout: full
 Department of Mathematics  
 University Salhi Ahmed, Naama, Algeria
 
-[Email](mailto:azzouz.abdelhalim@cuniv-naama.dz){.btn .btn-primary} [ORCID](https://orcid.org/0000-0003-0960-7768){.btn .btn-outline-primary} [Google Scholar](https://scholar.google.com/scholar?q=%22Abdelhalim+Azzouz%22){.btn .btn-outline-primary} [GitHub](https://github.com/Azzouz1972){.btn .btn-outline-secondary}
+[Email](mailto:azzouz.abdelhalim@cuniv-naama.dz){.btn .btn-primary} [ORCID](https://orcid.org/0000-0003-0960-7768){.btn .btn-outline-primary} [Google Scholar](https://scholar.google.com/scholar?q=%22Abdelhalim+Azzouz%22){.btn .btn-outline-primary}
 :::
 
 ## About
