@@ -1,0 +1,293 @@
+\chapter{Langage et raisonnement mathématiques}
+\label{chap:langage}
+\begin{flushleft}\small\sffamily
+\textbf{Prérequis :} calcul algébrique élémentaire, ensembles et fonctions vus en L1.\qquad
+\textbf{Volume indicatif :} trois semaines (cours et TD).
+\end{flushleft}
+
+\begin{questionfondatrice}
+Comment passer d'une observation convaincante à une affirmation précisément formulée, puis à une démonstration dont chaque étape peut être vérifiée ?
+\end{questionfondatrice}
+\begin{objectifs}
+À l'issue du chapitre, l'étudiant doit savoir distinguer énoncé, hypothèse et conclusion ; reconnaître définition, axiome, conjecture et théorème ; analyser les mots \emph{tout}, \emph{il existe} et \emph{si\ldots alors} ; rédiger une preuve directe, par contraposée, par l'absurde ou par disjonction des cas ; construire un contre-exemple ; expliquer les conditions d'emploi de « sans perte de généralité ».
+\end{objectifs}
+
+\section{Pourquoi apprendre à démontrer ?}
+Une suite de valeurs concordantes ne constitue pas une preuve d'un énoncé universel. Ainsi, les valeurs de $n^2+n+41$ sont premières pour $n=0,1,\ldots,39$, mais $n=40$ donne $40^2+40+41=41^2$, qui n'est pas premier. Inversement, vérifier l'égalité $1+3+\cdots+(2n-1)=n^2$ pour quelques entiers n'explique pas pourquoi elle doit rester vraie pour tout $n$.
+
+Le cours de logique répond à deux questions différentes : \emph{que signifie exactement l'affirmation ?} et \emph{qu'est-ce qui autorise à conclure ?} Une définition fixe le sens des mots ; une démonstration établit un lien contrôlable entre hypothèses et conclusion.
+
+\begin{exemple}{Trois niveaux d'information}{trois-niveaux}
+On lit : « Le carré d'un entier impair est impair. »
+\begin{enumerate}
+\item \textbf{Observation :} $1^2=1$, $3^2=9$ et $5^2=25$ sont impairs.
+\item \textbf{Formulation :} pour tout $n\in\Z$, si $n$ est impair, alors $n^2$ est impair.
+\item \textbf{Preuve :} il existe $k\in\Z$ tel que $n=2k+1$ ; ainsi $n^2=2(2k^2+2k)+1$.
+\end{enumerate}
+Ce dernier calcul prouve l'affirmation pour \emph{chaque} entier impair et non pour les seuls exemples examinés.
+\end{exemple}
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex,node distance=8mm,
+ box/.style={draw=LFblue,fill=LFpale,rounded corners=2mm,align=center,text width=4cm,minimum height=13mm,font=\small}]
+\node[box] (obs) {Observation\\exemples et calculs};
+\node[box,right=13mm of obs] (conj) {Conjecture\\énoncé précis};
+\node[box,below=12mm of conj] (pr) {Démonstration\\argument général};
+\node[box,left=13mm of pr] (th) {Théorème\\résultat établi};
+\draw[->,thick,LFteal] (obs)--(conj);
+\draw[->,thick,LFteal] (conj)--(pr);
+\draw[->,thick,LFteal] (pr)--(th);
+\draw[->,thick,LFcoral,dashed] (conj.west) to[bend right=22] node[above,font=\footnotesize]{contre-exemple} (obs.south);
+\end{tikzpicture}
+\caption{L'exploration suggère un résultat ; seule une preuve le fonde, et un contre-exemple peut le réfuter.}\label{fig:log:demarche}
+\end{figure}
+
+\section{Le vocabulaire d'un texte mathématique}
+\begin{definition}{Énoncé et proposition}{enonce}
+Une \emph{proposition} est un énoncé auquel on peut attribuer une valeur de vérité, vrai ou faux, une fois son domaine et les termes qui y figurent fixés. Une phrase ouverte, telle que « $x^2>4$ », devient une proposition lorsqu'on fixe $x$ ou qu'on quantifie la variable.
+\end{definition}
+\begin{exemple}{L'importance du domaine}{domaine}
+« Tout nombre positif possède une racine carrée » est vrai dans $\R$ avec la convention $x\geq0$ ; la formulation « tout nombre réel possède une racine carrée réelle » est fausse. L'énoncé « $x^2=2$ a une solution » est vrai dans $\R$ et faux dans $\Q$. Le domaine n'est donc jamais un détail.
+\end{exemple}
+
+\begin{definition}{Définition, axiome, conjecture, théorème}{statut}
+Une \emph{définition} introduit un terme ou une notation ; un \emph{axiome} est un énoncé admis dans un système donné ; une \emph{conjecture} est une affirmation envisagée mais non encore démontrée ; un \emph{théorème} est établi par une démonstration à partir des règles et résultats admis. On appelle souvent \emph{lemme} un résultat auxiliaire et \emph{corollaire} une conséquence proche d'un résultat déjà démontré.
+\end{definition}
+\begin{attention}
+Une définition n'est pas à « démontrer » : on vérifie plutôt qu'un objet satisfait ou non ses conditions. Un théorème, lui, appelle une justification. Un axiome n'est pas une vérité magique : son rôle dépend du système mathématique choisi.
+\end{attention}
+
+\subsection{Hypothèses et conclusion}
+La forme classique d'un théorème est : « Soit $x$ un objet satisfaisant $H(x)$. Alors $C(x)$. » Pour rédiger sa preuve, commencer par annoncer ce qui est supposé et ce qui doit être obtenu. Dans la phrase « Si $n$ est multiple de $6$, alors $n$ est pair », l'hypothèse est « $n$ multiple de $6$ », la conclusion « $n$ pair ».
+
+\begin{exemple}{La réciproque n'est pas la proposition}{reciproque}
+L'implication « multiple de $6$ $\Rightarrow$ pair » est vraie. Sa réciproque « pair $\Rightarrow$ multiple de $6$ » est fausse : $n=2$ est un contre-exemple. Le fait qu'une implication soit vraie ne donne aucune permission de la retourner.
+\end{exemple}
+
+\section{Traduire une phrase en langage mathématique}
+Le calcul formel des propositions et des prédicats sera développé au chapitre 3. Nous introduisons ici seulement les notations utiles à la lecture et à la rédaction d'une preuve.
+
+\begin{center}\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{>{\bfseries}l l X}\toprule
+Expression & Notation & Sens dans un énoncé \\ \midrule
+pour tout & $\forall$ & chaque élément du domaine satisfait la propriété \\
+il existe & $\exists$ & au moins un élément la satisfait \\
+si\ldots alors & $\Rightarrow$ & l'hypothèse entraîne la conclusion \\
+si et seulement si & $\Leftrightarrow$ & deux implications à établir \\
+non & $\neg$ & négation de l'énoncé \\
+et, ou & $\wedge,\ \vee$ & « ou » inclusif, sauf indication contraire \\ \bottomrule
+\end{tabularx}\end{center}
+
+\begin{exemple}{Traduire sans ambiguïté}{traduire}
+« Toute fonction continue en $a$ est bornée au voisinage de $a$ » peut se lire : pour toute fonction $f$ et tout point $a$ de son domaine où elle est continue, il existe $\delta>0$ et $M>0$ tels que $|f(x)|\le M$ pour tout $x$ du domaine vérifiant $|x-a|<\delta$. Les mots « il existe » viennent \emph{après} la fonction et le point fixés : $M$ et $\delta$ peuvent en dépendre.
+\end{exemple}
+
+\subsection{Le rôle de l'ordre des quantificateurs}
+Comparer les deux phrases :
+\[
+\forall x\in\R,\ \exists y\in\R : y>x,
+\qquad
+\exists y\in\R,\ \forall x\in\R : y>x.
+\]
+La première est vraie (choisir $y=x+1$), la seconde est fausse (choisir $x=y+1$). L'ordre des quantificateurs modifie le sens.
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex]
+\draw[->,LFnavy,thick] (-.1,0)--(10.4,0) node[right] {$\R$};
+\foreach \x in {1.5,4,6.5,9} {\draw (\x,.10)--(\x,-.10);}
+\fill[LFblue] (4,0) circle(2pt) node[below=4pt] {$x$};
+\fill[LFteal] (6.5,0) circle(2pt) node[below=4pt] {$y=x+1$};
+\draw[->,LFteal,thick] (4,.35)--(6.5,.35) node[midway,above,font=\small] {choix dépendant de $x$};
+\end{tikzpicture}
+\caption{« Pour chaque $x$, il existe $y$ » autorise un choix de $y$ différent pour chaque $x$.}\label{fig:log:quantif}
+\end{figure}
+
+\begin{proposition}{Négation des énoncés quantifiés}{negation}
+Pour une propriété $P(x)$ sur un domaine $E$, on a
+\[
+\neg(\forall x\in E,\,P(x))\ \Leftrightarrow\ \exists x\in E,\,\neg P(x),
+\]
+\[
+\neg(\exists x\in E,\,P(x))\ \Leftrightarrow\ \forall x\in E,\,\neg P(x).
+\]
+\end{proposition}
+\begin{proof}
+Dire que $P$ ne vaut pas pour tous les éléments signifie qu'il en existe au moins un pour lequel elle échoue. Dire qu'il n'existe aucun élément satisfaisant $P$ signifie qu'aucun n'y satisfait. Ce sont les définitions du « pour tout » et du « il existe ».
+\end{proof}
+\begin{exemple}{Négation d'une limite}{neg-lim}
+La négation de « pour tout $\varepsilon>0$, il existe $N$ tel que pour tout $n\ge N$, $|u_n-\ell|<\varepsilon$ » est :
+\[
+\exists\varepsilon_0>0,\ \forall N\in\N,\ \exists n\ge N:\ |u_n-\ell|\ge\varepsilon_0.
+\]
+On renverse chaque quantificateur et on nie seulement la propriété finale.
+\end{exemple}
+
+\section{Les méthodes classiques de démonstration}
+\subsection{La preuve directe}
+On suppose l'hypothèse et l'on en tire la conclusion par une chaîne d'arguments justifiés.
+\begin{proposition}{Somme de deux entiers pairs}{pairs}
+Si $a,b\in\Z$ sont pairs, alors $a+b$ est pair.
+\end{proposition}
+\begin{proof}
+Il existe $k,\ell\in\Z$ tels que $a=2k$ et $b=2\ell$. Alors $a+b=2(k+\ell)$ avec $k+\ell\in\Z$ : la somme est paire par définition.
+\end{proof}
+\begin{retenir}
+Dans une preuve directe, chaque ligne doit venir d'une hypothèse, d'une définition ou d'un résultat déjà disponible. Les calculs n'ont de valeur probante que si leur rôle est explicité.
+\end{retenir}
+
+\subsection{La contraposée}
+Pour établir $P\Rightarrow Q$, on peut établir l'implication équivalente $\neg Q\Rightarrow\neg P$.
+\begin{proposition}{Le carré pair impose la parité}{carre-pair}
+Si $n\in\Z$ et $n^2$ est pair, alors $n$ est pair.
+\end{proposition}
+\begin{proof}
+Supposons que $n$ ne soit pas pair : il existe $k\in\Z$ tel que $n=2k+1$. Dès lors $n^2=2(2k^2+2k)+1$ est impair. C'est la contraposée cherchée.
+\end{proof}
+\begin{attention}
+La \emph{contraposée} de $P\Rightarrow Q$ est $\neg Q\Rightarrow\neg P$, pas la \emph{réciproque} $Q\Rightarrow P$. La première est logiquement équivalente à l'énoncé initial ; la seconde ne l'est pas en général.
+\end{attention}
+
+\subsection{Le raisonnement par l'absurde}
+Pour démontrer $P$, on suppose $\neg P$ et l'on en déduit une contradiction. Le raisonnement par l'absurde est particulièrement utile pour l'impossibilité et l'unicité.
+\begin{theoreme}{Irrationalité de $\sqrt2$}{sqrt2}
+Le nombre $\sqrt2$ n'appartient pas à $\Q$.
+\end{theoreme}
+\begin{proof}
+Supposons $\sqrt2=p/q$ avec $p,q\in\Z$, $q\ne0$ et $p,q$ premiers entre eux. Alors $p^2=2q^2$ ; par la proposition précédente, $p$ est pair : $p=2r$. Ainsi $q^2=2r^2$, donc $q$ est pair. Les nombres $p$ et $q$ sont tous deux divisibles par $2$, contradiction avec l'irréductibilité de la fraction.
+\end{proof}
+
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex,node distance=8mm,
+ b/.style={draw=LFblue,rounded corners=2mm,fill=LFpale,minimum width=42mm,align=center,minimum height=11mm,font=\small}]
+\node[b] (a) {Supposer $\sqrt2=p/q$\\ fraction irréductible};
+\node[b,below=of a] (b) {$p^2=2q^2$\\donc $p$ pair};
+\node[b,below=of b] (c) {$q^2=2r^2$\\donc $q$ pair};
+\node[b,below=of c,draw=LFcoral,fill=LFred] (d) {$2$ divise $p$ et $q$\\contradiction};
+\foreach \x/\y in {a/b,b/c,c/d}{\draw[->,LFteal,thick] (\x)--(\y);}
+\end{tikzpicture}
+\caption{Architecture d'une preuve par l'absurde : hypothèse niée, conséquences, contradiction.}\label{fig:log:absurde}
+\end{figure}
+
+\subsection{La disjonction des cas}
+Lorsque les hypothèses couvrent plusieurs situations distinctes, il suffit de conclure dans chacun des cas.
+\begin{proposition}{Le produit de deux entiers consécutifs}{consecutifs}
+Pour tout $n\in\Z$, le produit $n(n+1)$ est pair.
+\end{proposition}
+\begin{proof}
+Si $n$ est pair, le produit est pair. Si $n$ est impair, $n+1$ est pair et le produit est encore pair. Ces deux cas couvrent tous les entiers.
+\end{proof}
+
+\subsection{Démontrer une équivalence}
+Établir $P\Leftrightarrow Q$ exige en général les deux sens : $P\Rightarrow Q$ puis $Q\Rightarrow P$.
+\begin{proposition}{Caractérisation d'une inclusion}{inclu}
+Pour deux parties $A,B$ d'un ensemble $E$, on a $A\subseteq B$ si et seulement si $A\cap B=A$.
+\end{proposition}
+\begin{proof}
+Si $A\subseteq B$, tout élément de $A$ appartient à $B$, donc $A\cap B=A$. Réciproquement, si $A\cap B=A$ et $x\in A$, alors $x\in A\cap B$, donc $x\in B$ ; ainsi $A\subseteq B$.
+\end{proof}
+
+\section{Existence, construction et unicité}
+Une preuve d'existence doit établir qu'au moins un objet satisfait les conditions. Elle peut être \emph{constructive} (on présente l'objet) ou non constructive (on prouve l'existence sans le déterminer explicitement). Une preuve d'unicité part de deux objets satisfaisant la propriété et montre qu'ils sont égaux.
+
+\begin{exemple}{Existence constructive}{existence}
+Pour chaque $a\in\R$, l'équation $x+3=a$ possède une solution : choisir $x=a-3$ et vérifier $x+3=a$. Si $x$ et $y$ sont solutions, alors $x+3=y+3$, d'où $x=y$ : la solution est unique.
+\end{exemple}
+\begin{proposition}{Unicité d'une limite réelle}{unique-lim}
+Une suite réelle ne peut pas avoir deux limites distinctes.
+\end{proposition}
+\begin{proof}
+Supposons $u_n\to\ell$ et $u_n\to m$. Si $\ell\ne m$, posons $\varepsilon=|\ell-m|/3>0$. Pour $n$ assez grand, $|u_n-\ell|<\varepsilon$ et $|u_n-m|<\varepsilon$, donc $|\ell-m|\le|\ell-u_n|+|u_n-m|<2|\ell-m|/3$, contradiction. Ainsi $\ell=m$.
+\end{proof}
+
+\section{Contre-exemples et vigilance sur la généralité}
+Un énoncé universel est réfuté par un seul objet qui satisfait les hypothèses mais pas la conclusion. Il ne suffit pas de citer un objet hors du domaine ou qui viole une hypothèse.
+\begin{contreexemple}{Une implication fausse}{faux}
+« Si $ab=0$, alors $a=b=0$ » est faux sur $\R$ : prendre $a=0$, $b=1$. Le contre-exemple satisfait bien $ab=0$, mais ne satisfait pas $a=b=0$. La conclusion correcte est $a=0$ \emph{ou} $b=0$.
+\end{contreexemple}
+\begin{contreexemple}{La convergence n'autorise pas tout}{faux-lim}
+« Si $u_n\to0$, alors $1/u_n\to0$ » est faux : $u_n=1/n$ pour $n\ge1$ converge vers $0$, mais $1/u_n=n$ diverge vers $+\infty$. La valeur $u_n=0$ doit, de plus, être exclue pour définir l'inverse.
+\end{contreexemple}
+
+\subsection{Quand peut-on dire « sans perte de généralité » ?}
+Cette formule est correcte seulement si un argument de symétrie ou de réduction permet de passer du cas général au cas choisi.
+\begin{exemple}{Une symétrie justifiée}{sptg}
+Pour $a,b\in\R$, l'égalité $\max(a,b)+\min(a,b)=a+b$ se démontre en supposant, sans perte de généralité, $a\le b$ : les rôles de $a$ et $b$ peuvent être échangés, et les deux membres sont symétriques. Dans ce cas, $\min(a,b)=a$ et $\max(a,b)=b$.
+\end{exemple}
+\begin{attention}
+On ne peut pas, sans justification, supposer « $x>0$ » dans une proposition portant sur tous les réels. Pour la fonction $f(x)=x^3$, les comportements en $x>0$ et $x<0$ ne sont pas automatiquement interchangeables sans exploiter une propriété précise, par exemple l'imparité.
+\end{attention}
+
+\section{Comment rédiger une preuve lisible ?}
+Une démonstration doit nommer les objets, citer les hypothèses pertinentes, annoncer l'objectif et motiver les transitions. Elle doit éviter les enchaînements de symboles qui ne précisent pas si l'on effectue une implication, une équivalence ou une simple transformation.
+\begin{retenir}
+\textbf{Plan de rédaction conseillé :} (1) fixer le cadre et les objets ; (2) annoncer la méthode si elle n'est pas évidente ; (3) utiliser les définitions ; (4) enchaîner les justifications ; (5) conclure exactement à l'énoncé demandé. Les mots \emph{donc}, \emph{car}, \emph{en effet} et \emph{réciproquement} marquent la structure de l'argument.
+\end{retenir}
+\begin{exemple}{Réparer une justification incomplète}{reparer}
+Affirmation : si $x^2<4$, alors $-2<x<2$. Écrire seulement « on prend la racine » est ambigu. On écrit plutôt : $x^2<4$ équivaut à $|x|<2$, donc $-2<x<2$ par définition de la valeur absolue.
+\end{exemple}
+
+\section{Exercices progressifs}
+Les exercices ci-dessous peuvent être utilisés en TD ; ils sont à chercher d'abord seul, puis à discuter en séance.
+\subsection*{Niveau 1 — Lire et formuler}
+\begin{exercice}[Hypothèse et conclusion]\label{ex:log:1}
+Identifier l'hypothèse et la conclusion : « Si $x\in\R$ et $x>2$, alors $x^2>4$. » Écrire la réciproque et dire si elle est vraie.
+\end{exercice}
+\begin{exercice}[Négations]\label{ex:log:2}
+Nier exactement : (a) $\forall x\in\R,\ x^2\ge0$ ; (b) $\exists n\in\N,\ n^2=2$ ; (c) $\forall\varepsilon>0\ \exists N\ \forall n\ge N,\ |u_n|<\varepsilon$.
+\end{exercice}
+\begin{exercice}[Quantificateurs]\label{ex:log:3}
+Déterminer la valeur de vérité de $\forall x\in\R\ \exists y\in\R:\ x+y=0$ et de $\exists y\in\R\ \forall x\in\R:\ x+y=0$.
+\end{exercice}
+\begin{exercice}[Définition et théorème]\label{ex:log:4}
+Classer les phrases suivantes : « un entier est pair s'il s'écrit $2k$ » ; « la somme de deux entiers pairs est paire » ; « pour tout entier $n$, $n^2+n+41$ est premier ».
+\end{exercice}
+\subsection*{Niveau 2 — Prouver et réfuter}
+\begin{exercice}[Preuve directe]\label{ex:log:5}
+Montrer que la somme de deux entiers impairs est paire.
+\end{exercice}
+\begin{exercice}[Contraposée]\label{ex:log:6}
+Montrer : si $n^2$ est impair, alors $n$ est impair.
+\end{exercice}
+\begin{exercice}[Disjonction des cas]\label{ex:log:7}
+Montrer que $n^2+n$ est pair pour tout $n\in\Z$.
+\end{exercice}
+\begin{exercice}[Équivalence]\label{ex:log:8}
+Pour $x\in\R$, montrer que $|x|<1$ si et seulement si $-1<x<1$.
+\end{exercice}
+\begin{exercice}[Contre-exemples]\label{ex:log:9}
+Pour chacune des assertions suivantes, donner un contre-exemple ou une preuve : (a) $a^2=b^2\Rightarrow a=b$ ; (b) $a\le b\Rightarrow a^2\le b^2$ ; (c) $a,b>0\Rightarrow ab>0$.
+\end{exercice}
+\subsection*{Niveau 3 — Construire un argument}
+\begin{exercice}[Existence et unicité]\label{ex:log:10}
+Montrer que, pour tout $a\in\R$, l'équation $3x-4=a$ a une unique solution réelle.
+\end{exercice}
+\begin{exercice}[L'absurde]\label{ex:log:11}
+Démontrer qu'il n'existe pas de plus grand entier naturel.
+\end{exercice}
+\begin{exercice}[Deux sens]\label{ex:log:12}
+Pour $A,B\subseteq E$, montrer que $A\subseteq B$ si et seulement si $A\cup B=B$.
+\end{exercice}
+\begin{exercice}[Un « sans perte de généralité »]\label{ex:log:13}
+Justifier précisément la possibilité de supposer $a\le b$ pour démontrer $|a-b|=\max(a,b)-\min(a,b)$ ; terminer la preuve.
+\end{exercice}
+\begin{exercice}[Réfuter une preuve]\label{ex:log:14}
+Un étudiant écrit : « $n=1,2,3,4$ vérifie $n^2+n+41$ premier, donc c'est vrai pour tout $n\in\N$. » Expliquer la faute logique et donner un contre-exemple explicite.
+\end{exercice}
+\begin{exercice}[Énoncé quantifié]\label{ex:log:15}
+Écrire formellement puis nier : « Toute fonction $f:\R\to\R$ admet au moins un zéro. » Dire si la phrase initiale est vraie.
+\end{exercice}
+
+\subsection*{Niveau 5 — Défis}
+\begin{exercice}[Aucun entier entre deux consécutifs]\label{ex:log:16}
+Montrer qu'il n'existe pas d'entier $k$ tel que $n<k<n+1$ pour un $n\in\Z$ fixé. Identifier l'hypothèse mathématique utilisée.
+\end{exercice}
+\begin{exercice}[Défi des quantificateurs]\label{ex:log:17}
+Écrire formellement et nier : « Pour toute suite réelle bornée, il existe un majorant réel ». Indiquer pourquoi la négation est fausse.
+\end{exercice}
+\begin{exercice}[Une preuve à réparer]\label{ex:log:18}
+On prétend : « $ab=0$ implique $a=0$ puisque l'on divise par $b$. » Expliquer l'erreur et donner une démonstration correcte dans $\R$ de $ab=0\Rightarrow(a=0\text{ ou }b=0)$.
+\end{exercice}
+
+\begin{retenir}
+Le chapitre suivant étudiera de manière systématique les ensembles, les relations et les applications ; le calcul propositionnel et celui des prédicats formaliseront ensuite les structures de raisonnement rencontrées ici.
+\end{retenir}

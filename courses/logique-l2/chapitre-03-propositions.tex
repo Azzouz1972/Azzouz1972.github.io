@@ -1,0 +1,215 @@
+\chapter{Calcul propositionnel et calcul des prédicats}
+\label{chap:calcul}
+\begin{flushleft}\small\sffamily
+\textbf{Prérequis :} phrases quantifiées du chapitre 1, ensembles et applications du chapitre 2.\qquad
+\textbf{Volume indicatif :} quatre à cinq semaines (cours et TD).
+\end{flushleft}
+\begin{questionfondatrice}
+Peut-on vérifier un raisonnement en ne connaissant que sa forme, sans dépendre du sujet dont parlent les propositions ? Et comment exprimer « tous », « au moins un » et « un seul » sans ambiguïté ?
+\end{questionfondatrice}
+\begin{objectifs}
+Construire une table de vérité, reconnaître tautologie et contradiction, transformer une formule sans changer sa valeur, vérifier la validité d'un argument, manipuler quantificateurs et variables libres, traduire et nier des définitions d'analyse et d'algèbre.
+\end{objectifs}
+
+\section{Propositions et connecteurs}
+Une lettre propositionnelle $p$ représente une phrase susceptible d'être vraie (V) ou fausse (F). Les connecteurs produisent de nouvelles propositions : négation $\neg p$, conjonction $p\wedge q$, disjonction inclusive $p\vee q$, implication $p\to q$, équivalence $p\leftrightarrow q$.
+\begin{definition}{Valeurs de vérité}{valeurs}
+L'implication $p\to q$ est \emph{fausse uniquement} quand $p$ est vraie et $q$ fausse. La disjonction est inclusive : $p\vee q$ est vraie si l'un au moins est vrai, éventuellement les deux.
+\end{definition}
+\begin{center}\renewcommand{\arraystretch}{1.23}
+\begin{tabular}{cc|ccccc}\toprule
+$p$&$q$&$\neg p$&$p\wedge q$&$p\vee q$&$p\to q$&$p\leftrightarrow q$\\\midrule
+V&V&F&V&V&V&V\\
+V&F&F&F&V&F&F\\
+F&V&V&F&V&V&F\\
+F&F&V&F&F&V&V\\\bottomrule
+\end{tabular}\end{center}
+\begin{exemple}{Pourquoi une hypothèse fausse donne une implication vraie}{vacuite}
+« Si $6$ est impair, alors $6^2$ est impair » a une hypothèse fausse ; comme implication matérielle, elle est vraie. Cela n'établit nullement que $6^2$ soit impair. La logique évalue la \emph{forme conditionnelle}, pas la conclusion prise isolément.
+\end{exemple}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex,node distance=6mm]
+\node[draw=LFblue,fill=LFpale,rounded corners=1mm,minimum width=18mm,minimum height=9mm] (p) {$p$};
+\node[draw=LFblue,fill=LFpale,rounded corners=1mm,below=11mm of p,minimum width=18mm,minimum height=9mm] (q) {$q$};
+\node[draw=LFteal,fill=LFgreen,rounded corners=2mm,right=19mm of p,yshift=-5.5mm,minimum width=23mm,minimum height=16mm] (and) {$\wedge$};
+\node[right=16mm of and] (o) {$p\wedge q$};
+\draw[->,thick,LFblue] (p.east)-|(and.north west);
+\draw[->,thick,LFblue] (q.east)-|(and.south west);
+\draw[->,thick,LFteal] (and)--(o);
+\end{tikzpicture}
+\caption{Un connecteur logique combine les valeurs de ses entrées ; la table de vérité définit son fonctionnement.}
+\end{figure}
+
+
+\subsection{Antisymétrie et implication à antécédent faux}
+Une relation $R$ est \emph{antisymétrique} si
+\[
+ \forall x\,\forall y\;\bigl((xRy\wedge yRx)\Longrightarrow x=y\bigr).
+\]
+Pour l'ordre strict $<$ sur $\R$, aucun couple $x,y$ ne vérifie simultanément
+$x<y$ et $y<x$. L'antécédent est donc toujours faux et l'implication vraie :
+la relation $<$ est antisymétrique \emph{au sens logique de cette définition},
+mais elle est aussi \emph{irréflexive} et \emph{asymétrique}.
+\begin{exemple}{Trois propriétés à ne pas confondre}{strict-antisym}
+La relation $\le$ est réflexive, antisymétrique et transitive : c'est un ordre
+au sens habituel. La relation $<$ est irréflexive et transitive : c'est un ordre
+strict. Elle est également antisymétrique, mais cela ne suffit nullement à en faire
+un ordre non strict, car la réflexivité manque.
+\end{exemple}
+\begin{center}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcc}\toprule
+Propriété & $\le$ sur $\R$ & $<$ sur $\R$\\\midrule
+Réflexive & oui & non\\
+Antisymétrique & oui & oui (par vacuité)\\
+Asymétrique & non & oui\\
+Transitive & oui & oui\\\bottomrule
+\end{tabular}\end{center}
+\begin{attention}
+Antisymétrique ne signifie pas « le contraire de symétrique ».
+Une relation asymétrique vérifie $xRy\Rightarrow\neg(yRx)$ ; cela entraîne
+l'irréflexivité et l'antisymétrie. La réciproque est fausse.
+\end{attention}
+
+
+\section{Formules, portée et priorité des connecteurs}
+Une formule se construit récursivement à partir de lettres $p,q,\ldots$ en appliquant les connecteurs. Nous utilisons l'ordre usuel : $\neg$ avant $\wedge$, puis $\vee$, puis $\to$ ; les parenthèses restent la méthode sûre pour éviter les ambiguïtés.
+\begin{definition}{Tautologie, contradiction, équivalence logique}{tautologie}
+Une \emph{tautologie} vaut V sous toute attribution des valeurs de ses lettres ; une \emph{contradiction} vaut F partout ; une formule \emph{satisfiable} vaut V dans au moins une attribution. Deux formules $F,G$ sont logiquement équivalentes, noté $F\equiv G$, si $F\leftrightarrow G$ est une tautologie.
+\end{definition}
+\begin{proposition}{Identités utiles}{identites}
+On a
+\[
+(p\to q)\equiv(\neg p\vee q),\quad
+\neg(p\wedge q)\equiv(\neg p\vee\neg q),\quad
+\neg(p\vee q)\equiv(\neg p\wedge\neg q).
+\]
+De plus $p\to q\equiv\neg q\to\neg p$ (contraposée), mais en général $p\to q\not\equiv q\to p$ (réciproque).
+\end{proposition}
+\begin{proof}
+Les formules comparées ont la même valeur dans chacune des quatre lignes du tableau $p,q$. Pour la réciproque, choisir $p=\mathrm F$, $q=\mathrm V$ : $p\to q$ est V, $q\to p$ est F.
+\end{proof}
+\begin{exemple}{Le piège de l'affirmation du conséquent}{consequent}
+« Si $n$ est multiple de $4$, alors $n$ est pair ; $n$ est pair ; donc $n$ est multiple de $4$. » Ce raisonnement a la forme $p\to q,\ q\therefore p$, qui n'est pas valide : $n=2$ le réfute.
+\end{exemple}
+\begin{attention}
+Un énoncé peut être vrai par hasard alors que le schéma d'inférence est invalide. On cherche un contre-modèle pour invalider une \emph{forme} : prémisses toutes vraies et conclusion fausse.
+\end{attention}
+
+\section{Règles d'inférence et validité}
+\begin{definition}{Argument valide}{argument}
+Un argument $P_1,\ldots,P_k\therefore Q$ est \emph{valide} lorsqu'il n'existe aucune attribution rendant vraies toutes les prémisses et fausse la conclusion. Cela équivaut à dire que $(P_1\wedge\cdots\wedge P_k)\to Q$ est une tautologie.
+\end{definition}
+\begin{center}\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{>{\bfseries}l X X}\toprule
+Règle&Prémisses&Conclusion\\\midrule
+Modus ponens&$p\to q$, $p$&$q$\\
+Modus tollens&$p\to q$, $\neg q$&$\neg p$\\
+Syllogisme hypothétique&$p\to q$, $q\to r$&$p\to r$\\
+Élimination de $\wedge$&$p\wedge q$&$p$\\
+Introduction de $\vee$&$p$&$p\vee q$\\\bottomrule
+\end{tabularx}\end{center}
+\begin{exemple}{Une preuve en trois pas}{trois-pas}
+Prémisses : $p\to q$, $q\to r$, $p$. Par modus ponens on obtient $q$ ; puis avec $q\to r$, on obtient $r$. Il ne suffit pas d'affirmer que la conclusion « semble logique » : chaque pas possède une règle.
+\end{exemple}
+\begin{proposition}{Raisonnement par disjonction de cas}{cas-disj}
+Les prémisses $p\vee q$, $p\to r$ et $q\to r$ entraînent $r$.
+\end{proposition}
+\begin{proof}Si $p\vee q$ est vraie, au moins une branche est vraie. Dans la première, $p\to r$ donne $r$ ; dans la seconde, $q\to r$ donne encore $r$.\end{proof}
+
+\section{Formes normales et méthode systématique}
+Une \emph{forme normale disjonctive} (FND) est une disjonction de conjonctions de littéraux ; une \emph{forme normale conjonctive} (FNC) est une conjonction de disjonctions de littéraux. On peut construire une FND à partir des lignes vraies de la table de vérité, et une FNC à partir des lignes fausses.
+\begin{exemple}{Construire une FND}{fnd}
+La formule $p\leftrightarrow q$ est vraie aux lignes $(\mathrm V,\mathrm V)$ et $(\mathrm F,\mathrm F)$, d'où
+\[(p\wedge q)\vee(\neg p\wedge\neg q).\]
+La même formule possède la FNC $(\neg p\vee q)\wedge(\neg q\vee p)$.
+\end{exemple}
+\begin{exemple}{Tester une argumentation avec un contre-modèle}{contre-modele}
+Pour $p\to q,\ q\therefore p$, l'attribution $p=\mathrm F$, $q=\mathrm V$ rend les deux prémisses vraies et la conclusion fausse. Une seule ligne suffit à invalider l'argument.
+\end{exemple}
+
+\section{Prédicats et quantificateurs}
+Une expression $P(x)$ est une \emph{formule ouverte} si $x$ est libre. Elle devient proposition lorsque l'on fixe $x$ ou qu'on quantifie cette variable dans un domaine $E$. La formule $\forall x\in E\ P(x)$ affirme que tous satisfont $P$ ; $\exists x\in E\ P(x)$ qu'au moins un le satisfait.
+\begin{definition}{Variables libres et liées}{liees}
+Une occurrence de variable est \emph{liée} lorsqu'elle se trouve dans la portée d'un quantificateur qui la déclare. Sinon elle est \emph{libre}. Une formule sans variables libres est dite fermée. La portée se lit à l'aide des parenthèses.
+\end{definition}
+\begin{exemple}{Changer l'ordre change la phrase}{ordre-quant}
+Sur $\R$, $\forall x\,\exists y\ (y>x)$ est vraie, en choisissant $y=x+1$. La phrase $\exists y\,\forall x\ (y>x)$ est fausse : il n'existe pas de majorant universel de $\R$.
+\end{exemple}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[x=.85cm,y=.82cm]
+\foreach \x in {0,...,4}{\foreach \y in {0,...,3}{\draw[LFblue!40] (\x,\y) rectangle +(1,1);}}
+\foreach \x in {0,...,4}{\node[below,font=\footnotesize] at (\x+.5,-.12) {$x_{\the\numexpr\x+1\relax}$};}
+\foreach \y in {0,...,3}{\node[left,font=\footnotesize] at (-.05,\y+.5) {$y_{\the\numexpr\y+1\relax}$};}
+\foreach \x/\y in {0/0,1/2,2/1,3/3,4/0}{\fill[LFteal!55] (\x+.04,\y+.04) rectangle (\x+.96,\y+.96);}
+\node[align=left,anchor=west,font=\small] at (5.45,2.8) {$\forall x\,\exists y\,P(x,y)$ :};
+\node[align=left,anchor=west,font=\small] at (5.45,2.15) {chaque colonne contient};
+\node[align=left,anchor=west,font=\small] at (5.45,1.65) {au moins une case colorée.};
+\node[align=left,anchor=west,font=\small] at (5.45,.8) {$\exists y\,\forall x\,P(x,y)$ :};
+\node[align=left,anchor=west,font=\small] at (5.45,.15) {une ligne entière colorée.};
+\end{tikzpicture}
+\caption{Les quantificateurs échangés imposent des configurations différentes.}
+\end{figure}
+\begin{proposition}{Négations quantifiées}{neg-quant}
+\[
+\neg\forall x\,P(x)\equiv\exists x\,\neg P(x),\qquad
+\neg\exists x\,P(x)\equiv\forall x\,\neg P(x).
+\]
+Le domaine de quantification est conservé. Pour nier une chaîne, on inverse les quantificateurs un par un et l'on nie la propriété finale.
+\end{proposition}
+\begin{proof}La première négation signifie qu'au moins un élément contredit $P$ ; la seconde qu'aucun élément ne satisfait $P$.\end{proof}
+\begin{exemple}{Nier la continuité en un point}{contin-niee}
+Pour $f:\R\to\R$, la continuité en $a$ est
+\[\forall\varepsilon>0\ \exists\delta>0\ \forall x\in\R:\ |x-a|<\delta\ \Longrightarrow\ |f(x)-f(a)|<\varepsilon.\]
+Sa négation est
+\[\exists\varepsilon_0>0\ \forall\delta>0\ \exists x\in\R:\ |x-a|<\delta\ \wedge\ |f(x)-f(a)|\ge\varepsilon_0.\]
+Le « et » final provient de $\neg(P\to Q)\equiv P\wedge\neg Q$.
+\end{exemple}
+\begin{definition}{Existence et unicité}{unique}
+$\exists!x\,P(x)$ signifie $\exists x\,[P(x)\wedge\forall y(P(y)\to y=x)]$. Pour démontrer l'unicité, on suppose $P(x)$ et $P(y)$ et on prouve $x=y$.
+\end{definition}
+\begin{attention}
+La substitution d'une expression contenant une variable dans une formule quantifiée doit éviter la \emph{capture} de variable. Il est permis de renommer une variable liée : $\forall x\,P(x)$ et $\forall z\,P(z)$ expriment la même chose, si le remplacement est cohérent.
+\end{attention}
+
+\section{Exercices progressifs}
+\subsection*{Niveau 1 — Lire les formules}
+\begin{exercice}[Table de vérité]\label{ex:prop:1}Construire la table de $p\to(q\vee\neg p)$. Est-ce une tautologie ?\end{exercice}
+\begin{exercice}[Négations]\label{ex:prop:2}Simplifier $\neg(p\to q)$ et $\neg(p\vee\neg q)$.\end{exercice}
+\begin{exercice}[Quantificateurs]\label{ex:prop:3}Évaluer dans $\Z$ : $\forall n\,\exists m\ (m>n)$ et $\exists m\,\forall n\ (m>n)$.\end{exercice}
+\begin{exercice}[Variables libres]\label{ex:prop:4}Identifier les variables libres de $\forall x\,(P(x,y)\to\exists z\,Q(z,x))$.\end{exercice}
+\subsection*{Niveau 2 — Calculer et prouver}
+\begin{exercice}[Contraposée]\label{ex:prop:5}Vérifier par tableau $p\to q\equiv\neg q\to\neg p$.\end{exercice}
+\begin{exercice}[Équivalence]\label{ex:prop:6}Démontrer $p\to q\equiv\neg p\vee q$ et donner sa FNC.\end{exercice}
+\begin{exercice}[Inférence]\label{ex:prop:7}À partir de $p\to q$, $q\to r$, $p$, déduire $r$ en nommant les règles.\end{exercice}
+\begin{exercice}[Unicité]\label{ex:prop:8}Traduire « $x^2=0$ admet une unique solution réelle » avec $\exists!$, puis sans ce symbole.\end{exercice}
+\subsection*{Niveau 3 — Formaliser}
+\begin{exercice}[Argument invalide]\label{ex:prop:9}Trouver un contre-modèle pour $p\to q,\ q\therefore p$.\end{exercice}
+\begin{exercice}[Forme normale]\label{ex:prop:10}Trouver une FND et une FNC de $p\leftrightarrow q$.\end{exercice}
+\begin{exercice}[Ordre des quantificateurs]\label{ex:prop:11}Sur $\N$, interpréter $\forall x\exists y\ (x<y)$ et $\exists y\forall x\ (x<y)$ ; justifier leurs valeurs de vérité.\end{exercice}
+\begin{exercice}[Négation d'une limite]\label{ex:prop:12}Écrire formellement puis nier « $u_n\to\ell$ » (suite réelle).\end{exercice}
+\subsection*{Niveau 4 — Approfondir}
+\begin{exercice}[Règle par cas]\label{ex:prop:13}Prouver que $(p\vee q)\wedge(p\to r)\wedge(q\to r)$ entraîne $r$.\end{exercice}
+\begin{exercice}[Validité et satisfiabilité]\label{ex:prop:14}Les formules $p\vee q$, $\neg p$ et $\neg q$ sont-elles simultanément satisfiables ? Justifier.\end{exercice}
+\begin{exercice}[Négation de l'uniforme]\label{ex:prop:15}Écrire et nier « $f_n\to f$ uniformément sur $E$ », avec $f_n,f:E\to\R$.\end{exercice}
+\subsection*{Niveau 5 — Défis}
+\begin{exercice}[Exactement un des trois]\label{ex:prop:16}Écrire une formule en $p,q,r$ vraie exactement lorsque l'une des trois lettres est vraie ; simplifier sa FND.\end{exercice}
+\begin{exercice}[Satisfaction sans calcul exhaustif]\label{ex:prop:17}La formule $(p\to q)\wedge(q\to r)\wedge(r\to p)\wedge p\wedge\neg r$ est-elle satisfiable ? Démontrer sans énumérer les huit lignes.\end{exercice}
+\begin{exercice}[Deux propositions très proches]\label{ex:prop:18}Dans $\R$, comparer $\forall x\exists y\ (x+y=0)$ et $\exists y\forall x\ (x+y=0)$. Formaliser leur négation respective et établir leur valeur de vérité.\end{exercice}
+
+
+\subsection*{Compléments — relations et implication}
+\begin{exercice}[L'ordre strict]\label{ex:prop:19}
+Écrire avec quantificateurs l'antisymétrie de $<$ sur $\R$ et justifier sa valeur de vérité.
+La relation est-elle réflexive ? Est-elle un ordre au sens non strict ?
+\end{exercice}
+\begin{exercice}[Asymétrie versus antisymétrie]\label{ex:prop:20}
+Sur $E=\{a,b\}$, donner une relation antisymétrique qui ne soit pas asymétrique.
+\end{exercice}
+\begin{exercice}[Défi — les quatre combinaisons]\label{ex:prop:21}
+Trouver sur un ensemble fini un exemple de relation (i) symétrique et antisymétrique,
+(ii) symétrique mais non antisymétrique, (iii) antisymétrique mais non symétrique,
+(iv) ni symétrique ni antisymétrique. Justifier chaque réponse.
+\end{exercice}
+
+
+\begin{retenir}Tables de vérité et raisonnements quantifiés formalisent les preuves du chapitre 1. Le chapitre 4 emploiera ces règles pour démontrer des propriétés valables pour une infinité d'entiers.\end{retenir}

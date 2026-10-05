@@ -24,6 +24,20 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Build Mathematical Logic (L2) course PDF
+        id: logic_pdf
+        continue-on-error: true
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: livre.tex
+          working_directory: courses/logique-l2
+
+      - name: Add course PDF to the site files
+        if: steps.logic_pdf.outcome == 'success'
+        run: |
+          mkdir -p files
+          cp courses/logique-l2/livre.pdf files/logique-mathematique-L2.pdf
+
       - name: Render site
         uses: quarto-dev/quarto-actions/render@v2
 

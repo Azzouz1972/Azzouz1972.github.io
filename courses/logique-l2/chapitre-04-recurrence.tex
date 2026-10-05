@@ -1,0 +1,239 @@
+\chapter{Bon ordre et preuve par récurrence}
+\label{chap:recurrence}
+\begin{flushleft}\small\sffamily
+\textbf{Prérequis :} implications, ensembles ordonnés, quantificateurs.\qquad
+\textbf{Volume indicatif :} trois à quatre semaines (cours et TD).
+\end{flushleft}
+\begin{questionfondatrice}
+Comment une vérification initiale et une règle permettant de passer d'un entier au suivant peuvent-elles démontrer une infinité de cas ? Que faire lorsqu'un contre-exemple peut être choisi minimal ?
+\end{questionfondatrice}
+\begin{objectifs}
+Savoir choisir la bonne propriété de récurrence ; distinguer récurrence simple, forte et simultanée ; exploiter le principe du plus petit élément ; reconnaître ordre partiel et bon ordre ; comprendre le statut du théorème du bon ordre de Zermelo.
+\end{objectifs}
+
+\section{Le principe de récurrence}
+\begin{theoreme}{Récurrence simple}{simple}
+Soit $P(n)$ une propriété pour $n\in\N$. Si $P(0)$ est vraie et si, pour tout $n\in\N$, $P(n)\Rightarrow P(n+1)$, alors $P(n)$ est vraie pour tout $n\in\N$.
+\end{theoreme}
+\begin{proof}
+Supposons que l'ensemble $C=\{n\in\N:\neg P(n)\}$ soit non vide, et prenons son plus petit élément $m$. Comme $P(0)$, $m\ne0$, donc $m-1\in\N$ et $P(m-1)$ est vraie par minimalité. L'hérédité donne $P(m)$ : contradiction. Cette preuve emploie le principe du bon ordre de $\N$, étudié plus loin.
+\end{proof}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex]
+\foreach \i in {0,...,5}{
+ \draw[LFblue,thick,fill=LFpale,rounded corners=1mm] (1.18*\i,0) rectangle +(0.82,1.1);
+ \node[font=\small] at (1.18*\i+.41,.55) {$P(\i)$};
+}
+\foreach \i in {0,...,4}{\draw[->,LFteal,thick] (1.18*\i+.84,.55)--(1.18*\i+1.13,.55);}
+\node[above,font=\small,LFteal] at (.41,1.2) {initialisation};
+\node[above,font=\small,LFteal] at (3.3,1.2) {hérédité};
+\node[right,LFnavy] at (7.05,.55) {$\cdots$};
+\end{tikzpicture}
+\caption{Le premier domino ne suffit pas : il faut aussi un mécanisme valable pour chaque passage $n\to n+1$.}
+\end{figure}
+\begin{exemple}{La somme des premiers entiers}{somme-entiers}
+Pour $n\ge0$, démontrons $\sum_{k=0}^n k=\frac{n(n+1)}2$. À $n=0$, les deux membres valent $0$. Si l'identité est vraie au rang $n$, alors
+\[
+\sum_{k=0}^{n+1}k=\frac{n(n+1)}2+(n+1)=\frac{(n+1)(n+2)}2.
+\]
+La propriété est donc vraie pour tous les $n$.
+\end{exemple}
+\begin{attention}
+L'hérédité ne remplace pas l'initialisation. La propriété $P(n)$ : « $n<0$ » vérifie formellement $P(n)\Rightarrow P(n+1)$ pour tout $n\in\N$ (hypothèse toujours fausse), mais elle n'est vraie à aucun rang.
+\end{attention}
+
+\section{Récurrence forte et récurrence à plusieurs rangs}
+\begin{theoreme}{Récurrence forte}{forte}
+Si $P(0)$ est vraie et si, pour chaque $n\in\N$, les hypothèses $P(0),\ldots,P(n)$ entraînent $P(n+1)$, alors $P(n)$ vaut pour tout $n$.
+\end{theoreme}
+\begin{proof}
+Posons $Q(n)=\bigwedge_{k=0}^nP(k)$. Alors $Q(0)$ est vraie et $Q(n)\Rightarrow Q(n+1)$ par l'hypothèse forte. Appliquer la récurrence simple à $Q$.
+\end{proof}
+\begin{exemple}{Chaque entier se factorise en nombres premiers}{factorisation}
+Pour tout $n\ge2$, soit $n$ premier, soit $n=ab$ avec $2\le a,b<n$. En supposant les entiers de $2$ à $n-1$ déjà décomposables en produit de premiers, il en va de même de $a,b$, donc de $n$. Le cas initial $n=2$ est premier.
+\end{exemple}
+Une récurrence d'ordre deux nécessite deux initialisations : pour $P(n+2)$ à partir de $P(n)$ et $P(n+1)$, établir $P(0)$ et $P(1)$. La récurrence simultanée consiste à grouper deux propriétés sous $Q(n)=P(n)\wedge R(n)$.
+\begin{exemple}{Suite de Fibonacci}{fibonacci}
+Si $F_0=0$, $F_1=1$, $F_{n+2}=F_{n+1}+F_n$, alors $F_n\le2^{n-1}$ pour $n\ge1$. Les rangs $1$ et $2$ vérifient l'inégalité ; si elle est vraie aux deux rangs précédents, alors $F_{n+2}\le2^n+2^{n-1}\le2^{n+1}$. On peut aussi obtenir la majoration par une récurrence forte.
+\end{exemple}
+
+
+\section{Approfondissement : récurrence de Cauchy}
+\begin{theoreme}{Principe de récurrence de Cauchy}{induction-cauchy}
+Soit $P(n)$ une propriété définie pour tout entier $n\ge1$. Supposons que :
+\begin{enumerate}
+ \item $P(1)$ est vraie ;
+ \item pour tout $n\ge1$, $P(n)\Rightarrow P(2n)$ ;
+ \item pour tout $n\ge2$, $P(n)\Rightarrow P(n-1)$.
+\end{enumerate}
+Alors $P(n)$ est vraie pour tout $n\ge1$.
+\end{theoreme}
+\begin{proof}
+Par doublement successif, $P(1),P(2),P(4),\ldots,P(2^k)$ sont vraies.
+Fixons $m\ge1$ et choisissons $k$ tel que $2^k\ge m$. En utilisant
+la troisième hypothèse un nombre fini de fois à partir de $P(2^k)$,
+on obtient $P(2^k-1),\ldots,P(m)$. Comme $m$ est arbitraire, la preuve est achevée.
+\end{proof}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex,node distance=9mm]
+\foreach \x/\s in {0/1,1.7/2,3.4/4,5.1/8}{
+ \node[draw=LFblue,fill=LFpale,rounded corners=2mm,minimum width=12mm,minimum height=7mm] (n\s) at (\x,0) {$P(\s)$};}
+\draw[->,LFteal,thick] (n1)--(n2); \draw[->,LFteal,thick] (n2)--(n4);\draw[->,LFteal,thick] (n4)--(n8);
+\node[draw=LFgold,fill=LFpaper,rounded corners=2mm] (seven) at (5.1,-1.4) {$P(7)$};
+\node[draw=LFgold,fill=LFpaper,rounded corners=2mm] (six) at (3.4,-1.4) {$P(6)$};
+\node[draw=LFgold,fill=LFpaper,rounded corners=2mm] (five) at (1.7,-1.4) {$P(5)$};
+\draw[->,LFgold,thick] (n8)--(seven);\draw[->,LFgold,thick] (seven)--(six);\draw[->,LFgold,thick] (six)--(five);
+\node[above=2mm of n4,font=\small,LFteal]{doublement};
+\node[below=2mm of six,font=\small,LFgold!70!black]{descente};
+\end{tikzpicture}
+\caption{Deux chemins de propagation : on atteint une puissance de $2$, puis on redescend au rang voulu.}
+\end{figure}
+\begin{exemple}{Inégalité arithmético-géométrique par récurrence de Cauchy}{agm-cauchy}
+Pour des nombres $a_1,\ldots,a_n>0$, la propriété $P(n)$ est
+\[
+ (a_1\cdots a_n)^{1/n}\le\frac{a_1+\cdots+a_n}{n}.
+\]
+$P(1)$ est une égalité. Pour passer de $n$ à $2n$, appliquer $P(n)$ aux deux
+moitiés, de moyennes respectives $A$ et $B$. Le produit total est au plus
+$(AB)^n$, puis $AB\le((A+B)/2)^2$ montre $P(2n)$.
+Pour redescendre de $n$ à $n-1$, partir de $a_1,\ldots,a_{n-1}$ de moyenne
+$m>0$ et leur ajouter $a_n=m$. L'hypothèse $P(n)$ donne
+$(a_1\cdots a_{n-1}m)^{1/n}\le m$, donc
+$a_1\cdots a_{n-1}\le m^{n-1}$ : c'est $P(n-1)$.
+Le principe de Cauchy conclut à tous les rangs.
+\end{exemple}
+
+\section{Approfondissement : Cauchy--Schwarz par récurrence}
+\begin{theoreme}{Inégalité de Cauchy--Schwarz finie}{cauchy-schwarz-ind}
+Pour tous $(a_i)_{1\le i\le n},(b_i)_{1\le i\le n}\in\R^n$,
+\[
+ \left(\sum_{i=1}^n a_ib_i\right)^2\le
+ \left(\sum_{i=1}^n a_i^2\right)
+ \left(\sum_{i=1}^n b_i^2\right).
+\]
+\end{theoreme}
+\begin{proof}
+Pour $n=1$, il y a égalité. Supposons l'inégalité vraie au rang $n$
+et posons $A=\sum_{i=1}^n a_i^2$, $B=\sum_{i=1}^n b_i^2$ et
+$S=\sum_{i=1}^n a_ib_i$. En écrivant $a=a_{n+1}$ et $b=b_{n+1}$,
+\[
+\begin{aligned}
+ (A+a^2)(B+b^2)-(S+ab)^2
+ &=\underbrace{(AB-S^2)}_{\ge0\text{ par hypothèse}}+
+   \underbrace{(Ab^2+Ba^2-2abS)}_{=\sum_{i=1}^n(a_i b-a b_i)^2\ge0}.
+\end{aligned}
+\]
+Les deux termes sont positifs, d'où l'inégalité au rang $n+1$.
+\end{proof}
+\begin{exemple}{Une application numérique}{cs-num}
+Pour $a=(1,2,-1)$ et $b=(2,0,3)$, on trouve $a\cdot b=-1$,
+$\sum a_i^2=6$ et $\sum b_i^2=13$. Ainsi $1\le 78$, conformément à l'inégalité.
+\end{exemple}
+\begin{retenir}
+La récurrence de Cauchy est une méthode particulière de propagation des indices,
+non une nouvelle inégalité. La preuve de Cauchy--Schwarz ci-dessus utilise, quant à elle,
+la récurrence simple et une identité de sommes de carrés.
+\end{retenir}
+
+
+\section{Relations d'ordre, ordres partiels et bons ordres}
+\begin{definition}{Ordre et ordre total}{ordre}
+Une relation $\preceq$ sur $E$ est un \emph{ordre} si elle est réflexive, antisymétrique et transitive. Elle est \emph{totale} si pour tous $x,y$, $x\preceq y$ ou $y\preceq x$. Un élément $m$ est \emph{minimal} s'il n'existe aucun $x\ne m$ avec $x\preceq m$ ; il est \emph{minimum} si $m\preceq x$ pour tout $x$.
+\end{definition}
+\begin{exemple}{Deux éléments incomparables}{divisibilite}
+Sur les diviseurs positifs de $12$, la divisibilité $a\preceq b\iff a\mid b$ est un ordre partiel : $2$ et $3$ sont incomparables. Le minimum est $1$, le maximum est $12$.
+\end{exemple}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex,every node/.style={circle,draw=LFblue,fill=LFpale,minimum size=8mm,font=\small}]
+\node (one) at (0,0) {$1$};
+\node (two) at (-1.8,1.2) {$2$};\node (three) at (1.8,1.2) {$3$};
+\node (four) at (-1.8,2.4) {$4$};\node (six) at (1.1,2.4) {$6$};
+\node (twelve) at (0,3.7) {$12$};
+\foreach \a/\b in {one/two,one/three,two/four,two/six,three/six,four/twelve,six/twelve}{\draw[LFteal,thick] (\a)--(\b);}
+\end{tikzpicture}
+\caption{Diagramme de Hasse de la divisibilité sur $\{1,2,3,4,6,12\}$. Une arête encode une relation de couverture ; les relations transitives sont implicites.}
+\end{figure}
+\begin{definition}{Bon ordre}{bon-ordre}
+Un ordre total $\preceq$ sur $E$ est un \emph{bon ordre} si chaque partie non vide de $E$ possède un plus petit élément. L'ordre usuel sur $\N$ en est un ; celui sur $\Z$ ne l'est pas, car $\Z$ n'a pas de plus petit élément.
+\end{definition}
+\begin{attention}
+« Tout sous-ensemble non vide a un élément minimal » ne suffit pas à garantir un bon ordre si l'ordre est seulement partiel : sur un ensemble fini de deux éléments incomparables, les deux sont minimaux, mais aucun n'est minimum.
+\end{attention}
+
+\section{Le plus petit contre-exemple et les preuves arithmétiques}
+\begin{proposition}{Récurrence et plus petit élément}{equivalence-induction}
+Sur $\N$, le principe de récurrence et le principe du plus petit élément sont équivalents.
+\end{proposition}
+\begin{proof}
+Le sens « plus petit élément $\Rightarrow$ récurrence » est la preuve du premier théorème. Inversement, supposons la récurrence et prenons une partie non vide $A\subseteq\N$ sans minimum. Posons $P(n)$ : « $A\cap\{0,\ldots,n\}=\varnothing$ ». Comme $0$ ne peut appartenir à $A$ sans être minimum, $P(0)$ vaut. Si $P(n)$ et $n+1\in A$, alors $n+1$ serait le minimum de $A$ ; impossible. Donc $P(n+1)$. La récurrence conduit à $A=\varnothing$, contradiction.
+\end{proof}
+\begin{exemple}{Infinité des nombres premiers}{infinitude-primes}
+Supposons qu'il n'existe qu'un nombre fini de premiers $p_1,\ldots,p_r$. L'entier $N=p_1\cdots p_r+1$ est supérieur à $1$ et admet donc un diviseur premier $p_i$. Ce dernier diviserait à la fois $N$ et le produit $p_1\cdots p_r$, donc leur différence $1$ : contradiction.
+\end{exemple}
+\begin{theoreme}{Division euclidienne dans $\N$}{division}
+Pour $a\in\N$ et $b\in\N^*$, il existe un unique couple $(q,r)\in\N^2$ tel que $a=bq+r$ et $0\le r<b$.
+\end{theoreme}
+\begin{proof}
+L'ensemble $S=\{a-bk:k\in\N,\ a-bk\ge0\}$ est non vide (prendre $k=0$). Soit $r$ son minimum et $q$ tel que $r=a-bq$. Si $r\ge b$, alors $r-b=a-b(q+1)\in S$, strictement plus petit : impossible. Pour l'unicité, si $bq+r=bq'+r'$, alors $b(q-q')=r'-r$ et $|r'-r|<b$ ; le seul multiple de $b$ possible est $0$, d'où $q=q'$ et $r=r'$.
+\end{proof}
+\begin{theoreme}{Unicité de la décomposition en facteurs premiers}{facteurs-unique}
+Tout entier $n\ge2$ s'écrit comme produit de nombres premiers ; cette décomposition est unique à l'ordre des facteurs près.
+\end{theoreme}
+\begin{proof}
+L'existence vient de la récurrence forte. Pour l'unicité, on utilise le lemme d'Euclide : si $p$ est premier et $p\mid ab$, alors $p\mid a$ ou $p\mid b$. Ce lemme découle de Bézout : si $p\nmid a$, alors $\gcd(p,a)=1$ et il existe $u,v\in\Z$ tels que $up+va=1$ ; en multipliant par $b$, on obtient $p\mid b$. Le théorème de Bézout se démontre à partir de la division euclidienne et de l'algorithme d'Euclide. Comparons deux factorisations $p_1\cdots p_r=q_1\cdots q_s$ : $p_1$ divise un des $q_j$ ; étant premiers, ils sont égaux. On les simplifie et on recommence, ce qui établit l'unicité.
+\end{proof}
+
+\section{Bon ordre de Zermelo et axiome du choix}
+\begin{theoreme}{Théorème du bon ordre de Zermelo (énoncé)}{zermelo}
+Dans la théorie ZF, l'axiome du choix équivaut à l'assertion : tout ensemble peut être muni d'un bon ordre. Il équivaut aussi au lemme de Zorn.
+\end{theoreme}
+\begin{exemple}{Pourquoi l'ordre habituel ne suffit pas}{reels-ordre}
+L'ordre usuel sur $[0,1]$ n'est pas un bon ordre, puisque $(0,1]$ n'a pas de plus petit élément. L'affirmation de Zermelo garantit l'existence d'\emph{un autre ordre} sur cet ensemble si l'on admet AC ; elle ne dit pas que l'ordre usuel convient.
+\end{exemple}
+La preuve générale du théorème de Zermelo requiert une étude plus avancée des ordinaux ou des arguments équivalents. En L2, l'objectif est de connaître un énoncé rigoureux, son hypothèse axiomatique et quelques usages. Il faut distinguer ce résultat du bon ordre naturel de $\N$, utilisé dans nos récurrences, qui ne nécessite pas l'axiome du choix pour son établissement usuel.
+\begin{retenir}
+Récurrence simple, récurrence forte et méthode du plus petit contre-exemple constituent trois présentations d'une même structure sur $\N$. Le théorème de Zermelo est un résultat d'une portée bien plus large, conditionné par l'axiome du choix dans ZF.
+\end{retenir}
+
+\section{Exercices progressifs}
+\subsection*{Niveau 1 — Initialiser et transmettre}
+\begin{exercice}[Somme d'entiers]\label{ex:rec:1}Montrer $1+\cdots+n=n(n+1)/2$ pour $n\ge1$.\end{exercice}
+\begin{exercice}[Somme géométrique]\label{ex:rec:2}Montrer $1+2+\cdots+2^n=2^{n+1}-1$.\end{exercice}
+\begin{exercice}[Parité]\label{ex:rec:3}Montrer que $n(n+1)$ est pair pour tout $n\in\N$.\end{exercice}
+\begin{exercice}[Trouver le défaut]\label{ex:rec:4}Pourquoi la phrase « $P(n)\Rightarrow P(n+1)$, donc $P(n)$ pour tout $n$ » est-elle incomplète ?\end{exercice}
+\subsection*{Niveau 2 — Construire une preuve}
+\begin{exercice}[Somme des carrés]\label{ex:rec:5}Prouver $\sum_{k=1}^n k^2=n(n+1)(2n+1)/6$.\end{exercice}
+\begin{exercice}[Divisibilité]\label{ex:rec:6}Montrer que $7\mid(8^n-1)$ pour tout $n\ge0$.\end{exercice}
+\begin{exercice}[Ordre partiel]\label{ex:rec:7}Sur $\PP(E)$, vérifier que $\subseteq$ est un ordre et dire quand il est total.\end{exercice}
+\begin{exercice}[Minimum ou minimal]\label{ex:rec:8}Sur les diviseurs positifs de $12$ ordonnés par divisibilité, déterminer minimum, maximum et une paire incomparable.\end{exercice}
+\subsection*{Niveau 3 — Choisir une méthode}
+\begin{exercice}[Récurrence forte]\label{ex:rec:9}Montrer que tout $n\ge2$ possède un diviseur premier.\end{exercice}
+\begin{exercice}[Plus petit contre-exemple]\label{ex:rec:10}À partir du bon ordre de $\N$, redémontrer la récurrence simple.\end{exercice}
+\begin{exercice}[Fibonacci]\label{ex:rec:11}Avec $F_0=0$, $F_1=1$, $F_{n+2}=F_{n+1}+F_n$, montrer $F_n\le2^{n-1}$ pour tout $n\ge1$.\end{exercice}
+\begin{exercice}[Un bon ordre modifié]\label{ex:rec:12}L'ordre inverse sur $\N$ est-il un bon ordre ? Justifier.\end{exercice}
+\subsection*{Niveau 4 — Approfondir}
+\begin{exercice}[Division euclidienne]\label{ex:rec:13}À l'aide du plus petit élément, démontrer l'existence du reste de la division de $a\in\N$ par $b\ge1$.\end{exercice}
+\begin{exercice}[Somme pondérée]\label{ex:rec:14}Prouver $\sum_{k=0}^{n}k2^k=(n-1)2^{n+1}+2$ pour $n\ge0$.\end{exercice}
+\begin{exercice}[Inégalité factorielle]\label{ex:rec:15}Montrer $2^n<n!$ pour tout $n\ge4$.\end{exercice}
+\subsection*{Niveau 5 — Défis}
+\begin{exercice}[Écriture binaire]\label{ex:rec:16}Prouver par récurrence forte que tout entier $n\ge1$ admet une écriture binaire finie, puis en établir l'unicité.\end{exercice}
+\begin{exercice}[Algorithme d'Euclide]\label{ex:rec:17}Montrer que l'algorithme des restes successifs termine et que son dernier reste non nul est le PGCD des deux entiers initiaux.\end{exercice}
+\begin{exercice}[Un invariant de récurrence]\label{ex:rec:18}Soit $u_0=1$ et $u_{n+1}=2u_n+1$. Deviner et prouver une expression explicite de $u_n$. Expliquer pourquoi $u_n$ est impair pour tout $n$.\end{exercice}
+
+
+\subsection*{Compléments — Cauchy et Cauchy--Schwarz}
+\begin{exercice}[Récurrence de Cauchy]\label{ex:rec:19}
+Supposons $P(1)$, $P(n)\Rightarrow P(2n)$ pour $n\ge1$ et $P(n)\Rightarrow P(n-1)$ pour $n\ge2$.
+Décrire une chaîne de déductions qui établit $P(13)$.
+\end{exercice}
+\begin{exercice}[Cauchy--Schwarz en dimension trois]\label{ex:rec:20}
+Vérifier l'inégalité de Cauchy--Schwarz pour $a=(1,0,2)$ et $b=(2,1,-1)$.
+\end{exercice}
+\begin{exercice}[Défi — le cas d'égalité]\label{ex:rec:21}
+À partir de l'identité utilisée dans la preuve par récurrence de Cauchy--Schwarz,
+montrer que pour deux vecteurs réels, l'égalité a lieu si et seulement si les vecteurs
+sont linéairement dépendants. Traiter aussi le cas où l'un des vecteurs est nul.
+\end{exercice}
+
+
+\begin{retenir}Une preuve par récurrence est une preuve complète, non une extrapolation empirique. Il faut vérifier les cas initiaux, énoncer précisément l'hypothèse de récurrence et justifier le passage au rang suivant.\end{retenir}

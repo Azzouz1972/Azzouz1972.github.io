@@ -1,0 +1,272 @@
+\chapter{Théorie des ensembles}
+\label{chap:ensembles}
+\begin{flushleft}\small\sffamily
+\textbf{Prérequis :} quantificateurs, applications, méthodes de preuve du chapitre 1.\qquad
+\textbf{Volume indicatif :} quatre semaines (cours et TD).
+\end{flushleft}
+\begin{questionfondatrice}
+Comment comparer la taille de deux ensembles, même infinis, et pourquoi la formule « l'ensemble de tous les ensembles » ne peut-elle être prise au pied de la lettre ?
+\end{questionfondatrice}
+\begin{objectifs}
+Manipuler les opérations ensemblistes et leurs preuves par appartenance ; distinguer relation et application ; établir la dénombrabilité de $\Z$ et $\Q$ ; comprendre l'argument diagonal et le théorème de Cantor--Bernstein ; identifier exactement le rôle des axiomes dans les résultats d'indépendance.
+\end{objectifs}
+
+\section{Ensembles, appartenance et opérations}
+Un ensemble $A$ est déterminé par ses éléments. Écrire $x\in A$ signifie que $x$ appartient à $A$ ; écrire $A\subseteq B$ signifie $\forall x\,(x\in A\Rightarrow x\in B)$. Deux ensembles sont égaux exactement quand ils ont les mêmes éléments (\emph{extensionalité}).
+\begin{definition}{Opérations fondamentales}{operations}
+Pour $A,B\subseteq E$, on pose
+\[
+A\cup B=\{x:x\in A\ \text{ou}\ x\in B\},\quad
+A\cap B=\{x:x\in A\ \text{et}\ x\in B\},\quad
+A\setminus B=\{x\in A:x\notin B\}.
+\]
+Le complémentaire est $A^c=E\setminus A$ (par rapport à $E$). L'ensemble des parties est $\PP(E)=\{A:A\subseteq E\}$.
+\end{definition}
+\begin{exemple}{Appartenance, inclusion et ensemble des parties}{parties}
+Si $E=\{a,b\}$, alors $\PP(E)=\{\varnothing,\{a\},\{b\},E\}$ ; $a\in E$, mais $\{a\}\subseteq E$. Il ne faut pas confondre $a$ et $\{a\}$. Pour $|E|=n$, on a $|\PP(E)|=2^n$ : chaque élément est choisi ou non.
+\end{exemple}
+\begin{proposition}{Lois de De Morgan}{demorgan}
+Pour tous $A,B\subseteq E$, $(A\cup B)^c=A^c\cap B^c$ et $(A\cap B)^c=A^c\cup B^c$. Pour une famille $(A_i)_{i\in I}$, ces égalités valent en remplaçant « deux » par « tous les indices ».
+\end{proposition}
+\begin{proof}Fixons $x\in E$. On a $x\in(A\cup B)^c$ si et seulement si $x\notin A$ et $x\notin B$, ce qui équivaut à $x\in A^c\cap B^c$. La seconde formule s'obtient de la même manière. L'argument repose sur la négation de « il existe » et de « pour tout » et vaut pour une famille quelconque.\end{proof}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[scale=.87]
+\foreach \dx/\lab in {0/{$A\cup B$},5.4/{$A\cap B$}}{
+ \begin{scope}[xshift=\dx cm]
+ \draw[LFnavy] (-.3,-.7) rectangle (4.6,2.7);
+ \fill[LFblue!18] (1.7,1) circle (1.13);
+ \fill[LFblue!18] (2.7,1) circle (1.13);
+ \draw[LFblue,thick] (1.7,1) circle (1.13) node[above left=7mm] {$A$};
+ \draw[LFteal,thick] (2.7,1) circle (1.13) node[above right=7mm] {$B$};
+ \node[below] at (2.1,-.85) {\lab};
+ \end{scope}}
+\begin{scope}[xshift=5.4cm]
+\begin{scope}
+\clip (1.7,1) circle (1.13);
+\fill[LFteal!55] (2.7,1) circle (1.13);
+\end{scope}\end{scope}
+\end{tikzpicture}
+\caption{Une région est décrite par une condition logique sur l'appartenance. La superposition correspond à « et ».}
+\end{figure}
+
+\section{Produit cartésien, relations et applications}
+\begin{definition}{Produit et relation}{relation}
+$A\times B=\{(a,b):a\in A,\ b\in B\}$. Une relation binaire sur $E$ est une partie $R\subseteq E\times E$. Elle est réflexive si $xRx$ pour tout $x$, symétrique si $xRy\Rightarrow yRx$, transitive si $xRy$ et $yRz\Rightarrow xRz$.
+\end{definition}
+Une \emph{relation d'équivalence} possède ces trois propriétés ; ses classes partitionnent $E$. Une relation d'ordre est réflexive, antisymétrique et transitive. Une application $f:A\to B$ associe à chaque $a\in A$ une unique image $f(a)\in B$ ; l'image de $S\subseteq A$ et l'image réciproque de $T\subseteq B$ sont
+\[f(S)=\{f(x):x\in S\},\qquad f^{-1}(T)=\{x\in A:f(x)\in T\}.\]
+\begin{attention}
+La notation $f^{-1}(T)$ existe pour \emph{toute} application : elle n'exige pas de fonction réciproque $f^{-1}:B\to A$. Les images réciproques commutent aux unions, intersections et compléments ; les images directes commutent aux unions, mais pas nécessairement aux intersections.
+\end{attention}
+\begin{exemple}{Une intersection perdue par l'image directe}{intersection-image}
+Pour $f:\R\to\R$, $f(x)=x^2$, prendre $S=\{-1\}$ et $T=\{1\}$. Alors $S\cap T=\varnothing$ mais $f(S)\cap f(T)=\{1\}$. L'injectivité permet de retrouver l'égalité pour les intersections.
+\end{exemple}
+\begin{proposition}{Images réciproques}{preimages}
+Pour toute famille $(B_i)_{i\in I}$ de parties de $B$,
+\[f^{-1}\!\left(\bigcup_i B_i\right)=\bigcup_i f^{-1}(B_i),\qquad
+f^{-1}\!\left(\bigcap_i B_i\right)=\bigcap_i f^{-1}(B_i).\]
+\end{proposition}
+\begin{proof}Un point $x$ appartient à la première partie si et seulement s'il existe $i$ tel que $f(x)\in B_i$. Pour la seconde, remplacer « il existe » par « pour tout ».\end{proof}
+
+
+\subsection{Une application est une relation particulière}
+Une relation de $A$ vers $B$ est un sous-ensemble de $A\times B$. Une application
+$f:A\to B$ peut donc être identifiée à son \emph{graphe}
+\[
+ \Gamma_f=\{(a,b)\in A\times B:b=f(a)\}.
+\]
+La différence avec une relation quelconque tient à deux exigences, pour chaque $a\in A$ :
+\emph{existence} d'une image et \emph{unicité} de cette image.
+\begin{proposition}{Caractérisation ensembliste d'une application}{graphe-fonction}
+Une partie $G\subseteq A\times B$ est le graphe d'une application de $A$ vers $B$ si et seulement si
+\[
+ \forall a\in A\;\exists!b\in B:\ (a,b)\in G.
+\]
+Pour un $a$ fixé, sa fibre verticale $G\cap(\{a\}\times B)$ contient donc exactement un point.
+\end{proposition}
+\begin{proof}
+Si $G=\Gamma_f$, le couple $(a,f(a))$ appartient à $G$ et tout autre couple $(a,b)$ de $G$ impose $b=f(a)$.
+Réciproquement, la propriété définit sans ambiguïté $f(a)$ comme l'unique $b$ tel que $(a,b)\in G$. On retrouve alors $G=\Gamma_f$.
+\end{proof}
+\begin{exemple}{Un graphe qui n'est pas celui d'une fonction}{graphe-exemple}
+Sur $A=\{1,2\}$ et $B=\{u,v\}$, la relation
+$G_1=\{(1,u),(2,v)\}$ définit une application. La relation
+$G_2=\{(1,u),(1,v),(2,u)\}$ ne le fait pas : $1$ a deux images.
+La relation $G_3=\{(1,u)\}$ ne le fait pas davantage : $2$ n'a aucune image.
+\end{exemple}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[>=Latex,scale=.92]
+\foreach \d/\key/\head in {0/L/{graphe d'une application},5.4/R/{deux images pour $1$}}{
+ \node[font=\small\sffamily\bfseries,LFnavy] at (\d+1.7,2.15) {\head};
+ \draw[LFblue,thick] (\d,0) ellipse (.53 and 1.15);
+ \draw[LFblue,thick] (\d+3.2,0) ellipse (.53 and 1.15);
+ \node at (\d,.53) (a\key) {$1$};\node at (\d,-.55) (b\key) {$2$};
+ \node at (\d+3.2,.53) (u\key) {$u$};\node at (\d+3.2,-.55) (v\key) {$v$};
+}
+\draw[->,LFteal,thick] (aL)--(uL); \draw[->,LFteal,thick] (bL)--(vL);
+\draw[->,LFcoral,thick] (aR)--(uR);\draw[->,LFcoral,thick] (aR)--(vR);
+\draw[->,LFteal,thick] (bR)--(uR);
+\end{tikzpicture}
+\caption{Le critère graphique : une et une seule flèche doit partir de chaque élément du domaine.}
+\end{figure}
+
+
+\section{Le paradoxe de Russell et les règles de formation}
+La théorie naïve permet de décrire des collections par propriétés. Cette liberté absolue aboutit à une contradiction. Supposons qu'il existe un ensemble $R=\{x:x\notin x\}$. Alors
+\[R\in R\quad\Longleftrightarrow\quad R\notin R.\]
+Les deux possibilités sont contradictoires. Le problème est le postulat implicite que \emph{toute} propriété définirait un ensemble. En théorie axiomatique ZF, le schéma de séparation ne fabrique que $\{x\in E:P(x)\}$ à partir d'un ensemble $E$ déjà donné ; il ne postule pas un ensemble universel.
+\begin{retenir}
+Le paradoxe ne prouve pas que les mathématiques sont incohérentes : il montre qu'une règle naïve de formation des ensembles est trop générale. Les axiomes précisent quelles constructions sont admises.
+\end{retenir}
+
+
+\subsection{Le bibliothécaire et le menteur : distinguer les mécanismes}
+\begin{exemple}{Le bibliothécaire : une incarnation de Russell}{bibliothecaire}
+Dans une bibliothèque fictive, un bibliothécaire devrait répertorier exactement tous les
+catalogues qui ne se répertorient pas eux-mêmes. Si son propre catalogue $C$ devait être
+catalogué selon cette règle, alors $C$ se répertorie lui-même si et seulement s'il ne se
+répertorie pas lui-même. La contradiction reproduit la forme $R\in R\Leftrightarrow R\notin R$.
+La difficulté ne vient pas d'une bibliothèque réelle : c'est la prescription
+\emph{sans restriction} qui est impossible à satisfaire.
+\end{exemple}
+\begin{exemple}{Le menteur : une autre famille de paradoxe}{menteur}
+La phrase « Cette phrase est fausse » est autoréférentielle. Si l'on admet qu'elle possède
+une valeur de vérité classique, cette valeur se renverse aussitôt. Elle ressemble à Russell
+par l'autoréférence, mais n'est \emph{pas} une définition ensembliste ; elle appartient aux
+paradoxes sémantiques. La version « tous les Crétois sont menteurs », attribuée à un Crétois,
+ne produit pas, à elle seule, une contradiction formelle : il faut préciser le sens de « menteur »
+et les hypothèses. On ne confondra donc pas paradoxe ensembliste et phrase ambiguë.
+\end{exemple}
+\begin{attention}
+Le paradoxe de Russell concerne la formation illimitée d'ensembles ; le menteur concerne la
+vérité d'une phrase parlant de sa propre vérité. Une analogie de structure ne permet pas de
+substituer l'un à l'autre dans une démonstration.
+\end{attention}
+
+
+\section{Équipotence et ensembles dénombrables}
+\begin{definition}{Équipotence et dénombrabilité}{equipotence}
+Deux ensembles $A,B$ sont équipotents, noté $A\sim B$, s'il existe une bijection $A\to B$. Un ensemble est \emph{dénombrable} s'il est fini ou s'il est équipotent à $\N$ (on dit aussi \emph{au plus dénombrable}). Il est \emph{dénombrablement infini} s'il est équipotent à $\N$.
+\end{definition}
+\begin{exemple}{Une partie propre peut avoir la même taille}{pairs-infinis}
+La fonction $n\mapsto2n$ donne une bijection de $\N$ sur les entiers pairs naturels. Pour l'infini, une inclusion stricte n'implique donc pas une cardinalité strictement plus petite.
+\end{exemple}
+\begin{proposition}{Les entiers relatifs et les rationnels sont dénombrables}{q-denom}
+Les ensembles $\Z$ et $\Q$ sont dénombrables.
+\end{proposition}
+\begin{proof}
+Énumérer $\Z$ selon $0,1,-1,2,-2,\ldots$. Pour $\Q$, chaque rationnel est $p/q$ avec $p\in\Z$ et $q\in\N^*$. Les couples $(p,q)$ s'énumèrent par diagonales $|p|+q=1,2,\ldots$, en ignorant les doublons des écritures fractionnaires. Cette énumération surjective montre que $\Q$ est au plus dénombrable ; comme il est infini, il est équipotent à $\N$.
+\end{proof}
+\begin{figure}[htbp]\centering
+\begin{tikzpicture}[x=1.0cm,y=.72cm,>=Latex]
+\foreach \i in {1,...,5}{\foreach \j in {1,...,5}{\fill[LFblue] (\i,-\j) circle(1.5pt);}}
+\foreach \i in {1,...,5}{\node[above,font=\small] at (\i,-.7) {$\i$};\node[left,font=\small] at (.73,-\i) {$\i$};}
+\draw[->,LFteal,very thick,rounded corners=3pt] (1,-1)--(1,-2)--(2,-1)--(3,-1)--(2,-2)--(1,-3)--(1,-4)--(2,-3)--(3,-2)--(4,-1);
+\node[anchor=west,font=\small] at (5.6,-2.1) {énumération par};\node[anchor=west,font=\small] at (5.6,-2.55) {diagonales finies};
+\end{tikzpicture}
+\caption{Chaque couple d'entiers positifs finit par apparaître sur une diagonale.}
+\end{figure}
+\begin{proposition}{Union dénombrable}{union-denom}
+Une union dénombrable d'ensembles au plus dénombrables est au plus dénombrable.
+\end{proposition}
+\begin{proof}
+Pour chaque ensemble non vide $A_n$, choisir une énumération (avec répétitions si nécessaire) $a_{n,k}$. Énumérer les couples $(n,k)$ par diagonales, puis effacer les doublons. Pour une famille dénombrable arbitraire, le choix simultané de ces énumérations utilise une forme dénombrable de l'axiome du choix ; dans les applications concrètes comme $\Q$, les énumérations sont explicites.
+\end{proof}
+
+\section{Cantor : tous les infinis n'ont pas la même taille}
+\begin{theoreme}{Théorème de Cantor}{cantor}
+Pour tout ensemble $E$, il n'existe aucune surjection $f:E\to\PP(E)$. En particulier $|E|<|\PP(E)|$ au sens des cardinalités.
+\end{theoreme}
+\begin{proof}
+Supposons $f$ surjective et formons $D=\{x\in E:x\notin f(x)\}\subseteq E$. Il existerait $d\in E$ tel que $f(d)=D$. Or
+\[d\in D\ \Longleftrightarrow\ d\notin f(d)=D,\]
+contradiction. Il existe en revanche toujours une injection $E\to\PP(E)$ donnée par $x\mapsto\{x\}$.
+\end{proof}
+\begin{theoreme}{Diagonalisation sur $[0,1]$}{diagonale}
+L'intervalle $[0,1]$ n'est pas dénombrable.
+\end{theoreme}
+\begin{proof}
+Supposons qu'on puisse l'énumérer $x_1,x_2,\ldots$. Écrivons chaque $x_n$ sous sa représentation décimale qui ne se termine pas par une queue infinie de $9$. Construisons $y=0,b_1b_2\ldots$ en posant $b_n=1$ si le $n$-ième chiffre de $x_n$ n'est pas $1$, et $b_n=2$ sinon. Ainsi $b_n\in\{1,2\}$ et diffère du chiffre diagonal de $x_n$. Notre écriture de $y$ ne finit pas par des $9$ et $y\ne x_n$ pour tout $n$ ; contradiction.
+\end{proof}
+\begin{attention}
+La convention sur les décimales est indispensable : $0,5000\ldots=0,4999\ldots$. En choisissant pour $y$ uniquement les chiffres $1$ et $2$, l'ambiguïté disparaît.
+\end{attention}
+\begin{exemple}{La densité n'implique pas la même cardinalité}{dense-cardinal}
+$\Q$ est dense dans $\R$ (tout intervalle ouvert contient un rationnel) mais $\Q$ est dénombrable et $\R$ ne l'est pas. Densité topologique et cardinalité mesurent deux propriétés distinctes.
+\end{exemple}
+
+\section{Théorème de Cantor--Bernstein}
+\begin{theoreme}{Cantor--Bernstein--Schröder}{cbs}
+S'il existe une injection $f:A\to B$ et une injection $g:B\to A$, alors il existe une bijection de $A$ sur $B$.
+\end{theoreme}
+\begin{proof}
+Définissons $A_0=A\setminus g(B)$, puis $A_{n+1}=g(f(A_n))$ et $A_*=\bigcup_{n\ge0}A_n$. On a $g(f(A_*))=A_*\setminus A_0$. Posons
+\[
+h(a)=\begin{cases}f(a),&a\in A_*,\\g^{-1}(a),&a\in A\setminus A_* .\end{cases}
+\]
+La seconde branche est définie car $A\setminus A_*\subseteq g(B)$ et $g$ est injective. Les deux images sont disjointes : si $f(a)=g^{-1}(a')$, avec $a\in A_*$ et $a'\notin A_*$, alors $a'=g(f(a))\in A_*$, contradiction. Les branches sont injectives. Enfin, si $b\notin f(A_*)$, alors $g(b)\notin A_*$ (sinon $g(b)\in A_*\setminus A_0=g(f(A_*))$ et $b\in f(A_*)$), donc $h(g(b))=b$. Ainsi $h$ est bijective.
+\end{proof}
+\begin{exemple}{Une application aux intervalles}{intervalle-card}
+L'injection $(0,1)\hookrightarrow[0,1]$ est l'inclusion, et $x\mapsto\frac14+\frac12x$ injecte $[0,1]$ dans $(0,1)$. Cantor--Bernstein donne une bijection sans devoir en écrire laborieusement une formule.
+\end{exemple}
+
+\section{Axiome du choix et frontières de la théorie}
+\begin{definition}{Axiome du choix (AC)}{choix}
+Pour toute famille $(E_i)_{i\in I}$ d'ensembles non vides, il existe une fonction $c$ telle que $c(i)\in E_i$ pour chaque $i$. Le choix finitiste ne pose pas de difficulté ; AC affirme l'existence simultanée pour une famille arbitraire.
+\end{definition}
+\begin{proposition}{Trois formulations équivalentes dans ZF}{choix-equivalence}
+L'axiome du choix, le théorème du bon ordre (tout ensemble admet un bon ordre) et le lemme de Zorn sont équivalents dans la théorie ZF. Le résultat et ses applications seront repris au chapitre 4.
+\end{proposition}
+L'\emph{hypothèse du continu} (CH) affirme qu'il n'existe pas de cardinal strictement compris entre celui de $\N$ et celui de $\R$ : $2^{\aleph_0}=\aleph_1$. Ce n'est pas un théorème de ZFC. Plus précisément, sous l'hypothèse de cohérence de ZFC, Gödel a construit un modèle où CH et AC sont vrais (univers constructible), et Cohen un modèle de ZFC où CH est faux (méthode du forcing). Ainsi ZFC ne décide pas CH, si ZFC est cohérente. Nous donnons ici la portée de ces résultats, non leur preuve technique, qui exige une formation spécialisée.
+\begin{retenir}
+Une assertion « indépendante de ZFC » signifie que ni elle ni sa négation ne sont démontrables à partir de ces axiomes, \emph{sous la condition de cohérence appropriée}. Il ne s'agit pas de dire qu'elle est simultanément vraie et fausse dans un même modèle.
+\end{retenir}
+
+\section{Exercices progressifs}
+\subsection*{Niveau 1 — Manipuler}
+\begin{exercice}[Ensemble des parties]\label{ex:ens:1}Écrire $\PP(\{1,2,3\})$ et vérifier son cardinal.\end{exercice}
+\begin{exercice}[Égalité par double inclusion]\label{ex:ens:2}Montrer $A\setminus(B\cup C)=(A\setminus B)\cap(A\setminus C)$.\end{exercice}
+\begin{exercice}[Images réciproques]\label{ex:ens:3}Pour $f(x)=x^2$, calculer $f^{-1}([1,4])$, $f^{-1}((-\infty,0))$ et $f([-2,1])$.\end{exercice}
+\begin{exercice}[Équivalence]\label{ex:ens:4}Sur $\Z$, poser $a\sim b$ si $3\mid(a-b)$. Vérifier que c'est une équivalence et décrire ses classes.\end{exercice}
+\subsection*{Niveau 2 — Démontrer}
+\begin{exercice}[Distributivité]\label{ex:ens:5}Montrer $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$ sans diagramme.\end{exercice}
+\begin{exercice}[Image et injectivité]\label{ex:ens:6}Prouver que $f(S\cap T)\subseteq f(S)\cap f(T)$ et que l'égalité vaut si $f$ est injective.\end{exercice}
+\begin{exercice}[Infinis explicites]\label{ex:ens:7}Construire une bijection de $\N$ vers $\Z$ et une de $\N$ vers $\N\times\N$.\end{exercice}
+\begin{exercice}[Sous-ensemble d'un dénombrable]\label{ex:ens:8}Montrer qu'une partie infinie de $\N$ est équipotente à $\N$.\end{exercice}
+\subsection*{Niveau 3 — Structurer}
+\begin{exercice}[Applications et partitions]\label{ex:ens:9}Montrer que les classes d'une relation d'équivalence constituent une partition de $E$ et réciproquement.\end{exercice}
+\begin{exercice}[Cardinalité des parties]\label{ex:ens:10}Démontrer directement qu'un ensemble à $n$ éléments possède $2^n$ parties.\end{exercice}
+\begin{exercice}[Bijection à partir des injections]\label{ex:ens:11}Établir $|(0,1)|=|[0,1]|$ par Cantor--Bernstein.\end{exercice}
+\begin{exercice}[Dénombrabilité des mots]\label{ex:ens:12}Montrer que l'ensemble des mots de longueur finie sur un alphabet fini non vide est dénombrable.\end{exercice}
+\subsection*{Niveau 4 — Approfondir}
+\begin{exercice}[Une diagonale abstraite]\label{ex:ens:13}Pour $F:E\to\PP(E)$, construire explicitement une partie de $E$ qui n'est pas dans l'image de $F$.\end{exercice}
+\begin{exercice}[Dénombrabilité des algébriques]\label{ex:ens:14}Montrer que l'ensemble des réels algébriques est dénombrable. En déduire l'existence de réels transcendants.\end{exercice}
+\begin{exercice}[Suites binaires]\label{ex:ens:15}Construire une bijection entre $\PP(\N)$ et $\{0,1\}^{\N}$ ; montrer que ce dernier ensemble n'est pas dénombrable.\end{exercice}
+\subsection*{Niveau 5 — Défis}
+\begin{exercice}[Une bijection inattendue]\label{ex:ens:16}Donner une bijection explicite de $[0,1)$ sur $(0,1)$ en ne déplaçant qu'une suite dénombrable de points.\end{exercice}
+\begin{exercice}[Injections et images]\label{ex:ens:17}Montrer qu'une application $f:E\to F$ est injective si et seulement si $f(A\cap B)=f(A)\cap f(B)$ pour toutes parties $A,B\subseteq E$.\end{exercice}
+\begin{exercice}[Défi de cardinalité]\label{ex:ens:18}Montrer que $\PP(\N\times\N)$ et $\PP(\N)$ sont équipotents, puis justifier que $\PP(\N)$ n'est pas dénombrable.\end{exercice}
+
+
+\subsection*{Compléments — modéliser et déjouer les paradoxes}
+\begin{exercice}[Graphe, existence et unicité]\label{ex:ens:19}
+Soient $A=\{1,2,3\}$ et $B=\{a,b\}$. On considère les relations
+\[
+ G=\{(1,a),(2,b),(3,a)\},\qquad
+ H=\{(1,a),(2,b),(2,a),(3,a)\}.
+\]
+Sont-elles des graphes d'applications $A\to B$ ? Justifier par les quantificateurs.
+\end{exercice}
+\begin{exercice}[Le bibliothécaire]\label{ex:ens:20}
+Formaliser la règle « le catalogue $C$ recense exactement les catalogues qui ne se recensent pas eux-mêmes ».
+En appliquant cette règle à $C$, expliquer le conflit logique.
+\end{exercice}
+\begin{exercice}[Défi — une relation à réparer]\label{ex:ens:21}
+Pour une relation finie $G\subseteq A\times B$ avec $A$ et $B$ non vides, décrire
+une procédure qui supprime ou ajoute des couples pour obtenir le graphe d'une application $A\to B$.
+Montrer qu'elle termine et expliquer pourquoi l'application obtenue n'est pas nécessairement unique.
+\end{exercice}
+
+
+\begin{retenir}La cardinalité compare des ensembles par bijections ; le calcul propositionnel du chapitre suivant expliquera formellement les règles logiques qui interviennent dans toutes ces preuves.\end{retenir}
+

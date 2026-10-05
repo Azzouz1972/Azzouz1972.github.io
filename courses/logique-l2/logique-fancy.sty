@@ -1,0 +1,73 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{logique-fancy}[2026/09/24 Style original pour Logique L2]
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[french]{babel}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+\RequirePackage{amsmath,amssymb,amsthm,mathtools}
+\RequirePackage{geometry}
+\geometry{a4paper,inner=27mm,outer=23mm,top=27mm,bottom=29mm,headheight=16pt}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric,decorations.pathreplacing}
+\RequirePackage{enumitem}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+\RequirePackage{hyperref}
+\RequirePackage{bookmark}
+\RequirePackage{graphicx}
+\RequirePackage{array,tabularx,booktabs,multicol}
+\RequirePackage{xcolor}
+\definecolor{LFnavy}{HTML}{172D47}
+\definecolor{LFblue}{HTML}{24648A}
+\definecolor{LFteal}{HTML}{167C7A}
+\definecolor{LFgold}{HTML}{BB8237}
+\definecolor{LFcoral}{HTML}{AF534C}
+\definecolor{LFpaper}{HTML}{F4F7FA}
+\definecolor{LFpale}{HTML}{ECF4F7}
+\definecolor{LFgreen}{HTML}{ECF6F2}
+\definecolor{LFred}{HTML}{FCF1EF}
+\hypersetup{colorlinks=true,linkcolor=LFnavy,urlcolor=LFblue,citecolor=LFteal,pdftitle={Logique mathématique - Licence 2},pdfauthor={Abdelhalim Azzouz}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt plus 1pt}
+\setlist[enumerate]{leftmargin=*,itemsep=3pt,topsep=4pt}
+\setlist[itemize]{leftmargin=*,itemsep=3pt,topsep=4pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\sffamily\color{LFnavy}\thepage\quad\textcolor{LFgold}{\rule[-2pt]{1pt}{11pt}}\quad Logique mathématique}
+\fancyhead[RO]{\small\sffamily\color{LFnavy}\nouppercase{\leftmark}\quad\textcolor{LFgold}{\rule[-2pt]{1pt}{11pt}}\quad\thepage}
+\fancyfoot[C]{\footnotesize\sffamily\color{LFblue} Licence 2 Mathématiques}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\sffamily\color{LFnavy}\thepage}\renewcommand{\headrulewidth}{0pt}}
+\titleformat{\chapter}[display]
+ {\normalfont\sffamily\color{LFnavy}}
+ {\raggedleft\fontsize{54}{58}\selectfont\bfseries\textcolor{LFgold}{\thechapter}}
+ {-8pt}
+ {\raggedright\Huge\bfseries}
+
+\titlespacing*{\chapter}{0pt}{-8pt}{26pt}
+\titleformat{\section}{\large\sffamily\bfseries\color{LFnavy}}{\textcolor{LFgold}{\thesection}}{0.8em}{}
+\titleformat{\subsection}{\normalsize\sffamily\bfseries\color{LFblue}}{\thesubsection}{0.8em}{}
+\newtcbtheorem[number within=chapter]{definition}{Définition}{enhanced,breakable,colback=LFpale,colframe=LFblue,fonttitle=\bfseries\sffamily,boxrule=.65pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm}{def}
+\newtcbtheorem[number within=chapter]{theoreme}{Théorème}{enhanced,breakable,colback=LFgreen,colframe=LFteal,fonttitle=\bfseries\sffamily,boxrule=.65pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm}{thm}
+\newtcbtheorem[number within=chapter]{proposition}{Proposition}{enhanced,breakable,colback=LFgreen,colframe=LFteal,fonttitle=\bfseries\sffamily,boxrule=.65pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm}{prop}
+\newtcbtheorem[number within=chapter]{exemple}{Exemple guidé}{enhanced,breakable,colback=white,colframe=LFgold,fonttitle=\bfseries\sffamily,boxrule=.6pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm}{ex}
+\newtcbtheorem[number within=chapter]{contreexemple}{Contre-exemple}{enhanced,breakable,colback=LFred,colframe=LFcoral,fonttitle=\bfseries\sffamily,boxrule=.6pt,arc=2mm,left=3mm,right=3mm,top=2mm,bottom=2mm}{cex}
+\newtcolorbox{questionfondatrice}{enhanced,breakable,colback=LFnavy,colframe=LFnavy,coltext=white,fontupper=\large\sffamily,boxrule=0pt,arc=2mm,title={\sffamily\bfseries Question fondatrice},coltitle=white}
+\newtcolorbox{objectifs}{enhanced,breakable,colback=LFpaper,colframe=LFblue,fonttitle=\bfseries\sffamily,title=Objectifs du chapitre,arc=2mm}
+\newtcolorbox{retenir}{enhanced,breakable,colback=LFgreen,colframe=LFteal,fonttitle=\bfseries\sffamily,title=À retenir,arc=2mm}
+\newtcolorbox{attention}{enhanced,breakable,colback=LFred,colframe=LFcoral,fonttitle=\bfseries\sffamily,title=Point de vigilance,arc=2mm}
+\newcounter{exercice}[chapter]
+\renewcommand{\theexercice}{\thechapter.\arabic{exercice}}
+\newenvironment{exercice}[1][]{\refstepcounter{exercice}\par\medskip\noindent{\color{LFblue}\sffamily\bfseries Exercice~\theexercice}\if\relax\detokenize{#1}\relax\else\hspace{.5em}\textit{#1}\fi\par\smallskip}{\par\medskip}
+\newcommand{\corrige}[1]{\par\medskip\noindent\textcolor{LFteal}{\sffamily\bfseries Corrigé de l'exercice~#1.}\enspace}
+\renewcommand{\proofname}{Démonstration}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\PP}{\mathcal P}
+\newcommand{\ssi}{\Longleftrightarrow}
+\newcommand{\implique}{\Longrightarrow}

@@ -1,0 +1,45 @@
+\documentclass[11pt,a4paper,twoside,openany]{book}
+\usepackage{logique-fancy}
+\begin{document}
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+ \fill[LFnavy] (current page.north west) rectangle ([yshift=-11.0cm]current page.north east);
+ \fill[LFgold] ([yshift=-11.1cm]current page.north west) rectangle ([yshift=-11.0cm]current page.north east);
+ \draw[LFteal!40,line width=1.5pt] ([xshift=18mm,yshift=-21mm]current page.north west) rectangle ([xshift=-18mm,yshift=21mm]current page.south east);
+ \draw[LFgold!85,line width=.7pt] ([xshift=21mm,yshift=-24mm]current page.north west) rectangle ([xshift=-21mm,yshift=24mm]current page.south east);
+\end{tikzpicture}
+\vspace*{1.1cm}
+\begin{center}
+{\large\sffamily\color{white} LICENCE 2 MATHÉMATIQUES}\par\vspace{1.1cm}
+{\fontsize{34}{41}\selectfont\bfseries\sffamily\color{white} LOGIQUE\\[3mm] MATHÉMATIQUE}\par\vspace{.7cm}
+{\large\color{white} Du langage à la démonstration}\par
+\end{center}
+\vspace{3.4cm}
+\begin{center}
+{\Large\bfseries Abdelhalim Azzouz}\par\vspace{6mm}
+{\sffamily Cours magistral et travaux dirigés}\par\vspace{1.4cm}
+\begin{tcolorbox}[width=.7\textwidth,colback=LFpaper,colframe=LFgold,boxrule=.75pt,arc=2mm]
+\centering\sffamily\bfseries Polycopié\\[2mm]
+Cours et travaux dirigés
+\end{tcolorbox}
+\vfill
+{\sffamily\color{LFnavy} Année universitaire 2026--2027}
+\end{center}
+\end{titlepage}
+\thispagestyle{empty}
+\frontmatter
+\chapter*{Avant-propos}
+\addcontentsline{toc}{chapter}{Avant-propos}
+La logique mathématique n'est pas seulement un répertoire de symboles : elle fournit des règles permettant de formuler une affirmation sans ambiguïté, d'examiner ses hypothèses et de rédiger une preuve vérifiable. Ce polycopié s'adresse aux étudiants de deuxième année de Licence Mathématiques et accompagne le travail en séance de travaux dirigés.
+
+L'ouvrage suit une progression en quatre chapitres : langage et raisonnement mathématiques ; théorie des ensembles ; calcul propositionnel et calcul des prédicats ; bon ordre et récurrence. Les quatre chapitres sont accompagnés d'exemples guidés, d'illustrations TikZ et d'exercices progressifs allant jusqu'au niveau « Défi ». Les résultats d'indépendance et les théorèmes les plus avancés sont présentés avec leurs hypothèses et la portée exacte de leurs énoncés. Les énoncés et exercices sont rédigés pour être travaillés activement : rechercher des exemples et des contre-exemples, identifier les quantificateurs, puis expliquer chaque étape d'une démonstration. La version augmentée approfondit les graphes d'applications, les paradoxes autoréférentiels, l'antisymétrie et deux méthodes de récurrence illustrées par des inégalités classiques.
+\tableofcontents
+\mainmatter
+\input{chapitre-01-langage}
+\input{chapitre-02-ensembles}
+\input{chapitre-03-propositions}
+\input{chapitre-04-recurrence}
+\backmatter
+\input{bibliographie}
+\end{document}
