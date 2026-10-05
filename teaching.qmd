@@ -14,7 +14,18 @@ This section provides course notes, problem sheets, and other teaching resources
 
 ### Measure and Integration
 
-Course notes and exercise sheets will be made available here.
+:::: {.columns}
+::: {.column width="30%"}
+[![Cover of Au-delà de Riemann](images/au-dela-de-riemann-couverture.jpg){.course-cover}](files/au-dela-de-riemann-extrait.pdf)
+:::
+::: {.column width="70%"}
+*Au-delà de Riemann : Mesure, intégration et passage à la limite.* Abdelhalim Azzouz and Kouider Djerfi. SARAHMED Éditions, 2026.
+
+A course for Licence 3 and Master 1, in six chapters: $\sigma$-algebras and measures; measurable functions and random variables; integrable functions and the Lebesgue integral; product measures and iterated integrals; $L^p$ spaces; density, convolution and the Hilbert space $L^2$.
+
+[Cover, contents and references (PDF)](files/au-dela-de-riemann-extrait.pdf){.btn .btn-primary}
+:::
+::::
 
 ### Differential Calculus
 

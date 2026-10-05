@@ -23,3 +23,4 @@ h2 { margin-top: 2rem; }
 .pdf-page { background: #fff; margin: 0 0 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
 .pdf-page canvas { display: block; width: 100%; height: auto; }
 @media print { .pdf-reader, .pdf-status { display: none; } }
+.course-cover { width: 100%; max-width: 220px; border-radius: 0.3rem; box-shadow: 0 3px 10px rgba(0,0,0,.2); }
