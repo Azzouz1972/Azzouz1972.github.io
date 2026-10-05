@@ -8,16 +8,17 @@ toc: false
 ```{=html}
 <div id="pdf-status" class="pdf-status">Loading the course…</div>
 <div id="pdf-reader" class="pdf-reader" aria-label="Mathematical Logic, Licence 2"></div>
+<noscript><p>JavaScript is required to read the course online.</p></noscript>
 <script type="module">
 (async function () {
   var PDF_URL = 'files/logique-mathematique-L2.pdf';
-  var LIB = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@6.2.108/legacy/build/';
+  var LIB = new URL('assets/pdfjs/', document.baseURI).href;
   var box = document.getElementById('pdf-reader');
   var status = document.getElementById('pdf-status');
   box.addEventListener('contextmenu', function (e) { e.preventDefault(); });
   try {
-    var pdfjs = await import(LIB + 'pdf.min.mjs');
-    pdfjs.GlobalWorkerOptions.workerSrc = LIB + 'pdf.worker.min.mjs';
+    var pdfjs = await import(LIB + 'pdf.min.js');
+    pdfjs.GlobalWorkerOptions.workerSrc = LIB + 'pdf.worker.min.js';
     var pdf = await pdfjs.getDocument({ url: PDF_URL }).promise;
     var first = await pdf.getPage(1);
     var base = first.getViewport({ scale: 1 });

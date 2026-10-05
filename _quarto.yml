@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - assets/pdfjs/*
 
 website:
   title: "Abdelhalim Azzouz"
