@@ -10,7 +10,7 @@ This section provides course notes, problem sheets, and other teaching resources
 
 *From language to proof.* Lecture notes with tutorial exercises for second-year Licence students in Mathematics. Four chapters: mathematical language and reasoning; set theory; propositional calculus and predicate calculus; well-ordering and induction. Academic year 2026–2027.
 
-[Download the course (PDF)](files/logique-mathematique-L2.pdf){.btn .btn-primary}
+[Read the course online](logique-lecture.qmd){.btn .btn-primary}
 
 ### Measure and Integration
 
