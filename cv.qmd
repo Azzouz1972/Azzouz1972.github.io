@@ -17,6 +17,6 @@ Functional analysis; operator theory; partial differential equations; stochastic
 
 ## Full CV
 
-[Download the full CV (PDF)](files/cv-abdelhalim-azzouz.pdf){.btn .btn-primary}
+[Download the full CV (PDF)](files/cv-abdelhalim-azzouz.pdf){.btn .btn-primary download="CV_Abdelhalim_Azzouz.pdf"}
 
 Last update: 5 October 2026.

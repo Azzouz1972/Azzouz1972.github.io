@@ -18,9 +18,4 @@ h2 { margin-top: 2rem; }
 .hero .columns { align-items: center; }
 .navbar-brand { font-size: 1.05rem; }
 .navbar-nav .nav-link { font-size: 0.92rem; padding-left: 0.55rem; padding-right: 0.55rem; }
-.pdf-status { text-align: center; opacity: .7; margin: .5rem 0 1rem; }
-.pdf-reader { max-width: 860px; margin: 0 auto; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
-.pdf-page { background: #fff; margin: 0 0 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
-.pdf-page canvas { display: block; width: 100%; height: auto; }
-@media print { .pdf-reader, .pdf-status { display: none; } }
 .course-cover { width: 100%; max-width: 220px; border-radius: 0.3rem; box-shadow: 0 3px 10px rgba(0,0,0,.2); }

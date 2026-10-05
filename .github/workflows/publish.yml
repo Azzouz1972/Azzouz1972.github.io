@@ -32,11 +32,12 @@ jobs:
           root_file: livre.tex
           working_directory: courses/logique-l2
 
-      - name: Add course PDF to the site files
+      - name: Make the public extract of the course (cover, contents, chapter 1, references)
         if: steps.logic_pdf.outcome == 'success'
         run: |
-          mkdir -p files
-          cp courses/logique-l2/livre.pdf files/logique-mathematique-L2.pdf
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils qpdf
+          mkdir -p files images
+          python3 courses/logique-l2/make_extract.py courses/logique-l2/livre.pdf files/logique-mathematique-L2-extrait.pdf images/logique-couverture.jpg
 
       - name: Render site
         uses: quarto-dev/quarto-actions/render@v2
