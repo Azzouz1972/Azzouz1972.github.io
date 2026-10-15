@@ -1,12 +1,13 @@
 ---
-title: "Measure and Integration — Lecture slides (Licence 3)"
+title: "Mesure et Intégration — Diaporama (Licence 3)"
+lang: fr
 page-layout: full
 toc: false
 ---
 
-Slides of the Licence 3 course *Mesure et Intégration*, sessions 1–14, academic year 2026–2027. Online reading only.
+Diaporama du cours de Licence 3 *Mesure et Intégration*, séances 1–14, année universitaire 2026–2027. Langue des slides : français ; une version anglaise suivra. Lecture en ligne uniquement.
 
-[← Back to Teaching](teaching.qmd)
+[← Retour à Teaching](teaching.qmd)
 
 ```{=html}
 <style>
@@ -17,6 +18,6 @@ Slides of the Licence 3 course *Mesure et Intégration*, sessions 1–14, academ
 </style>
 <iframe class="slides-frame"
         src="https://drive.google.com/file/d/1KlfjZJ6syY30K57w5vxjNEVoka4c4FzQ/preview"
-        title="Measure and Integration, lecture slides"
+        title="Mesure et Intégration, diaporama du cours"
         allow="autoplay" loading="lazy"></iframe>
 ```

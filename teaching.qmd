@@ -34,11 +34,11 @@ A course for Licence 3 and Master 1, in six chapters: $\sigma$-algebras and meas
 :::
 ::::
 
-#### Lecture slides (Licence 3)
+#### Diaporama du cours (Licence 3)
 
-Beamer slides for the Licence 3 course, fourteen sessions over the four chapters: $\sigma$-algebras and measures; measurable functions; integration; product measures. Academic year 2026–2027. Online reading only.
+Diaporama Beamer du cours de Licence 3, en quatorze séances sur les quatre chapitres : tribus et mesures ; fonctions mesurables ; intégration ; mesures produits. Année universitaire 2026–2027. Langue des slides : français ; une version anglaise suivra. Lecture en ligne uniquement.
 
-[Read the slides online, sessions 1–14](slides-mesure-integration.qmd){.btn .btn-primary}
+[Lire le diaporama en ligne, séances 1–14](slides-mesure-integration.qmd){.btn .btn-primary}
 
 ### Differential Calculus
 
