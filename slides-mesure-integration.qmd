@@ -4,92 +4,19 @@ page-layout: full
 toc: false
 ---
 
-Slides of the Licence 3 course *Mesure et Intégration*, sessions 1–14, academic year 2026–2027. Online reading only. Use the arrow keys or the buttons to move between slides.
+Slides of the Licence 3 course *Mesure et Intégration*, sessions 1–14, academic year 2026–2027. Online reading only.
 
 [← Back to Teaching](teaching.qmd)
 
 ```{=html}
 <style>
-  #pdfv { max-width: 1000px; margin: 1rem auto; }
-  #pdfv .bar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
-               justify-content: center; margin-bottom: .6rem; font-size: .95rem; }
-  #pdfv button { padding: .25rem .8rem; border: 1px solid #888; border-radius: .3rem;
-                 background: transparent; color: inherit; cursor: pointer; }
-  #pdfv input { width: 4.5rem; text-align: center; }
-  #pdfv .stage { text-align: center; user-select: none; -webkit-user-select: none; }
-  #pdfv canvas { max-width: 100%; box-shadow: 0 2px 12px rgba(0,0,0,.25); background: #fff; }
-  #pdfv #msg { text-align: center; margin: 1rem 0; }
-  @media print { #pdfv { display: none; } }
+  .slides-frame { display: block; width: 100%; max-width: 1000px; height: 78vh;
+                  min-height: 480px; margin: 1rem auto; border: 0;
+                  box-shadow: 0 2px 12px rgba(0,0,0,.25); }
+  @media print { .slides-frame { display: none; } }
 </style>
-
-<div id="pdfv">
-  <div class="bar">
-    <button id="first" title="First slide">«</button>
-    <button id="prev" title="Previous (←)">‹</button>
-    <span>Page <input id="num" type="number" min="1" value="1"> / <span id="count">…</span></span>
-    <button id="next" title="Next (→)">›</button>
-    <button id="last" title="Last slide">»</button>
-    <button id="zout" title="Smaller">−</button>
-    <button id="zin" title="Larger">+</button>
-  </div>
-  <div class="stage"><canvas id="cv"></canvas></div>
-  <div id="msg">Loading the slides…</div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script>
-(function () {
-  var URL_PDF = "files/mesure-integration-L3-slides.pdf";
-  var cv = document.getElementById("cv");
-  var ctx = cv.getContext("2d");
-  var msg = document.getElementById("msg");
-  var num = document.getElementById("num");
-  var count = document.getElementById("count");
-  var doc = null, cur = 1, zoom = 1, busy = false, pending = null;
-
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-  function render(n) {
-    if (!doc) return;
-    n = Math.max(1, Math.min(doc.numPages, n));
-    if (busy) { pending = n; return; }
-    busy = true; cur = n; num.value = n;
-    doc.getPage(n).then(function (page) {
-      var w = Math.min(document.getElementById("pdfv").clientWidth, 1000) * zoom;
-      var base = page.getViewport({ scale: 1 });
-      var scale = w / base.width;
-      var dpr = window.devicePixelRatio || 1;
-      var vp = page.getViewport({ scale: scale * dpr });
-      cv.width = vp.width; cv.height = vp.height;
-      cv.style.width = (vp.width / dpr) + "px";
-      return page.render({ canvasContext: ctx, viewport: vp }).promise;
-    }).then(function () {
-      busy = false;
-      if (pending !== null) { var p = pending; pending = null; render(p); }
-    }).catch(function () { busy = false; msg.textContent = "Could not display this slide."; });
-  }
-
-  function go(d) { render(cur + d); }
-  document.getElementById("first").onclick = function () { render(1); };
-  document.getElementById("last").onclick = function () { render(doc ? doc.numPages : 1); };
-  document.getElementById("prev").onclick = function () { go(-1); };
-  document.getElementById("next").onclick = function () { go(1); };
-  document.getElementById("zin").onclick = function () { zoom = Math.min(2, zoom + 0.2); render(cur); };
-  document.getElementById("zout").onclick = function () { zoom = Math.max(0.4, zoom - 0.2); render(cur); };
-  num.onchange = function () { render(parseInt(num.value, 10) || 1); };
-  document.addEventListener("keydown", function (e) {
-    if (e.target === num) return;
-    if (e.key === "ArrowRight" || e.key === "PageDown") { go(1); e.preventDefault(); }
-    if (e.key === "ArrowLeft" || e.key === "PageUp") { go(-1); e.preventDefault(); }
-  });
-  cv.addEventListener("contextmenu", function (e) { e.preventDefault(); });
-  window.addEventListener("resize", function () { render(cur); });
-
-  pdfjsLib.getDocument(URL_PDF).promise.then(function (d) {
-    doc = d; count.textContent = d.numPages; num.max = d.numPages;
-    msg.textContent = ""; render(1);
-  }).catch(function () { msg.textContent = "The slides could not be loaded."; });
-})();
-</script>
+<iframe class="slides-frame"
+        src="https://drive.google.com/file/d/1KlfjZJ6syY30K57w5vxjNEVoka4c4FzQ/preview"
+        title="Measure and Integration, lecture slides"
+        allow="autoplay" loading="lazy"></iframe>
 ```

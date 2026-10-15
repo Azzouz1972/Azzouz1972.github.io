@@ -1,7 +1,5 @@
 project:
   type: website
-  resources:
-    - files/mesure-integration-L3-slides.pdf
 
 website:
   title: "Abdelhalim Azzouz"
