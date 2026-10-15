@@ -34,6 +34,12 @@ A course for Licence 3 and Master 1, in six chapters: $\sigma$-algebras and meas
 :::
 ::::
 
+#### Lecture slides (Licence 3)
+
+Beamer slides for the Licence 3 course, fourteen sessions over the four chapters: $\sigma$-algebras and measures; measurable functions; integration; product measures. Academic year 2026–2027.
+
+[Slides, sessions 1–14 (PDF)](files/mesure-integration-L3-slides.pdf){.btn .btn-primary}
+
 ### Differential Calculus
 
 Resources on differential calculus, multivariable integration, differential forms, Green–Stokes formulas, and submanifolds.
