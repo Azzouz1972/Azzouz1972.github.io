@@ -1,0 +1,23 @@
+---
+title: "Measure and Integration — Slides (Licence 3)"
+lang: en
+page-layout: full
+toc: false
+---
+
+Slides for the Licence 3 course *Measure and Integration*, sessions 1–14, academic year 2026–2027. Language of the slides: English. A French version is also available. Online reading only.
+
+[← Back to Teaching](teaching.qmd) · [Version française](slides-mesure-integration.qmd)
+
+```{=html}
+<style>
+  .slides-frame { display: block; width: 100%; max-width: 1000px; height: 78vh;
+                  min-height: 480px; margin: 1rem auto; border: 0;
+                  box-shadow: 0 2px 12px rgba(0,0,0,.25); }
+  @media print { .slides-frame { display: none; } }
+</style>
+<iframe class="slides-frame"
+        src="https://drive.google.com/file/d/1VE3WZ_92iZrO4NOFxpKK8tQWICJ4A20i/preview"
+        title="Measure and Integration, course slides"
+        allow="autoplay" loading="lazy"></iframe>
+```

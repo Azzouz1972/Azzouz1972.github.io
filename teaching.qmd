@@ -42,6 +42,8 @@ The English PDFs and LaTeX source archive have been prepared. Download links wil
 
 **French version:** [View the original 14-session slideshow](slides-mesure-integration.qmd).
 
+**English version, sessions 1–14:** [Read the slides online](slides-mesure-integration-en.qmd).
+
 ### Differential Calculus
 
 Resources on differential calculus, multivariable integration, differential forms, Green–Stokes formulas, and submanifolds.

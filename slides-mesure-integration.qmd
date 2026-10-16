@@ -5,7 +5,7 @@ page-layout: full
 toc: false
 ---
 
-Diaporama du cours de Licence 3 *Mesure et Intégration*, séances 1–14, année universitaire 2026–2027. Langue des slides : français ; une version anglaise suivra. Lecture en ligne uniquement.
+Diaporama du cours de Licence 3 *Mesure et Intégration*, séances 1–14, année universitaire 2026–2027. Langue des slides : français. Une version anglaise est disponible : [English version](slides-mesure-integration-en.qmd). Lecture en ligne uniquement.
 
 [← Retour à Teaching](teaching.qmd)
 
