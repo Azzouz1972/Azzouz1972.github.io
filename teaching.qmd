@@ -42,6 +42,14 @@ A course for Licence 3 and Master 1, in six chapters: $\sigma$-algebras and meas
 
 **English version, sessions 1–14:** [Read the slides online](slides-mesure-integration-en.qmd).
 
+#### Exercices
+
+Travaux dirigés du cours de Licence 3 Mesure et intégration, année universitaire 2026–2027.
+
+- [TD 1 — Espaces mesurables, mesures, mesures extérieures et théorème de Carathéodory (énoncés, PDF)](files/td1-espaces-mesurables-enonces.pdf)
+- TD 2 — à compléter
+- TD 3 — à compléter
+
 ### Differential Calculus
 
 Resources on differential calculus, multivariable integration, differential forms, Green–Stokes formulas, and submanifolds.
