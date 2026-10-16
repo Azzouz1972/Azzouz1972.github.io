@@ -44,7 +44,7 @@ A course for Licence 3 and Master 1, in six chapters: $\sigma$-algebras and meas
 
 #### Exercices
 
-Travaux dirigés du cours de Licence 3 Mesure et intégration, année universitaire 2026–2027.
+Travaux dirigés du cours de Licence 3 Mesure et intégration, année universitaire 2026–2027. Une nouvelle fiche est publiée chaque mois.
 
 - [TD 1 — Espaces mesurables, mesures, mesures extérieures et théorème de Carathéodory (énoncés, PDF)](files/td1-espaces-mesurables-enonces.pdf)
 - TD 2 — à compléter
