@@ -36,9 +36,7 @@ A course for Licence 3 and Master 1, in six chapters: $\sigma$-algebras and meas
 
 #### Lecture slides — Measure and Integration (Licence 3)
 
-**Academic year 2026–2027.** Four chapters and 14 Beamer sessions covering sigma-algebras and measures, measurable functions, Lebesgue integration, and product measures. The complete **English-language** course comprises 432 slides, including definitions, proofs, worked examples, and exercises.
-
-The English PDFs and LaTeX source archive have been prepared. Download links will be added here once the files are uploaded to the website repository.
+**Academic year 2026–2027.** Four chapters and 14 Beamer sessions covering sigma-algebras and measures, measurable functions, Lebesgue integration, and product measures. The complete **French-English-language** course comprises 432 slides, including definitions, proofs, worked examples, and exercises.
 
 **French version:** [View the original 14-session slideshow](slides-mesure-integration.qmd).
 
